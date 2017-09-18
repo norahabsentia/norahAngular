@@ -47,9 +47,14 @@ const appRoutes: Routes = [
   {
     path: 'export-game',
     component: ExportGameComponent
-  }, {
+  },
+  {
     path: 'game-maker',
     component: GameMakerComponent
+  },
+  {
+    path: 'game-maker.html',
+    component: HomeComponent      //Change this as required
   },
   {
     path: 'char-maker',

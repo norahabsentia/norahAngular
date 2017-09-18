@@ -50,6 +50,24 @@
         background: url("/assets/images/1-04.png") no-repeat center;
       }
     }
+    &.box5 {
+      background: url("/assets/images/2-05.png") no-repeat center;
+      &:hover {
+        background: url("/assets/images/1-05.png") no-repeat center;
+      }
+    }
+    &.box6 {
+      background: url("/assets/images/2-06.png") no-repeat center;
+      &:hover {
+        background: url("/assets/images/1-06.png") no-repeat center;
+      }
+    }
+    &.box7 {
+      background: url("/assets/images/2-07.png") no-repeat center;
+      &:hover {
+        background: url("/assets/images/1-07.png") no-repeat center;
+      }
+    }
 
     &>div {
       background: inherit;
@@ -128,4 +146,12 @@
 img {
   position: absolute;
   top: -2000px;
+}
+
+.toolkit-container .toolkit-header{
+    font-size: 20px;
+    color: white;
+    font-family: Lato2OFL;
+    font-weight: 1000;
+    margin: 60px 0 20px;
 }
