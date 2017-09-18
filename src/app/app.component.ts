@@ -7,7 +7,7 @@ import { LibraryService } from './pages/library/library.service';
 import { RepositoryService } from './pages/repository/repository.service';
 import { SEO_CONFIGURATION } from './seo.config';
 import { SeoService } from './seo.service';
-import { InitializePiwik,ConfigurePiwikTracker, UsePiwikTracker} from 'Angular2Piwik';
+import { InitializePiwik,ConfigurePiwikTracker, UsePiwikTracker} from 'angular2piwik';
 
 
 declare const $: any;

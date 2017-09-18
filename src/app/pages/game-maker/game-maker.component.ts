@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TerrainGenService } from '../terrain-gen/terrain-gen.service';
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'Angular2Piwik';
+import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
 
 

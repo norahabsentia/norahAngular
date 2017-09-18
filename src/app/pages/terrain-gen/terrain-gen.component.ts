@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import { GlobalRef } from '../../global-ref';
 import { HeightMapSocketService } from './HeightMapSocketService';
 import { TerrainGenService } from './terrain-gen.service';
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'Angular2Piwik';
+import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
 
 

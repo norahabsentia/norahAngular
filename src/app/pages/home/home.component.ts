@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { WOW } from 'wowjs/dist/wow.min.js';
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'Angular2Piwik';
+import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
 
 
