@@ -34,7 +34,7 @@ import { Blog2Component } from './pages/blog2/blog2.component';
 import { Blog3Component } from './pages/blog3/blog3.component';
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { SwiperModule, SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { Angular2PiwikModule } from 'Angular2Piwik';
+import { Angular2PiwikModule } from 'angular2piwik';
 
 const SWIPER_CONFIG: SwiperConfigInterface = {
     direction: 'horizontal',

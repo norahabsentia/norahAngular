@@ -6,7 +6,7 @@ import { GlobalRef } from '../../global-ref';
 import * as firebase from 'firebase';
 import { GunSocketService } from './gun-socket.service';
 import { inputVal, outputVal } from './mock-data';  //dummy data
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'Angular2Piwik';
+import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
 
 declare var $: any;
