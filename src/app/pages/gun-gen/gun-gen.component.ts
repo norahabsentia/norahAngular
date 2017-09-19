@@ -24,7 +24,7 @@ declare var ValidateInputsThenApply: any;
 export class GunGenComponent implements AfterViewInit {
 
   currentComponent = 'mountains';
-  activeLink = 'Sniper';
+  activeLink = 'ActionRifle';
   isGenerate = false;
   isOpen = true;
   guns = [];
