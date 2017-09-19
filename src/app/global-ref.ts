@@ -23,6 +23,8 @@ export interface MyGlobal {
   UrlsToUnity:any;
   UnityReset:any;
   UpdateInfo:any;
+  AnimationsLoadedInWebPlayer:any;
+  AnimationExported:any;
 }
 
 export abstract class GlobalRef {
