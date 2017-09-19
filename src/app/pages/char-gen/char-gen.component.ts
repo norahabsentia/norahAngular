@@ -215,7 +215,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
 
       this.showMessag("Files successfully processed");
       if(data.generationName[0] === "G"){
-
+        this.hideFbxExport=true;
         this.processedFiles = new GeneratedImages(data.id,data.generationName,"",data.files);
         this.selectedImage1 = Object.assign({}, data.files[0]);
         this.input1Image = Object.assign({}, this.selectedImage1);
@@ -455,6 +455,16 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
   }
  
   imageSelected(index: number, pos: string){
+    console.log("got a click");
+    if(!this.hideGuide){
+      this.hideGuide=true;
+      this.hideFbxExport=true;
+      this.selectedImage1.file = '';
+      console.log("Should be triggered once");
+    }else{
+      this.hideFbxExport=true;
+     console.log("Should be triggered everytime");
+    }
     try {
       if (pos === "G" && this.processedFiles.files[index] !== '') { 
         this.selectedImage1 = Object.assign({}, this.processedFiles.files[index]);
