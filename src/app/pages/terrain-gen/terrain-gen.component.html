@@ -74,10 +74,10 @@
                                     <div class="item" [ngClass]="terrain.selected ? 'active-img' : ''">
                                         <i class="fa fa-check-circle-o fa-inverse" *ngIf="terrain.selected"></i>
                                         <img [src]="terrain.url" alt="">
-                                        <div class="overlay" (click)="selectImg(terrain)">
+                                        <div class="overlay" (click)="selectImg($event, terrain)">
                                           <div class="item-row">
                                             <button>
-                                              <i class="fa fa-play" aria-hidden="true" (click)="openImage(terrain)"></i>
+                                              <i class="fa fa-play" aria-hidden="true" (click)="openImage(terrain.url)"></i>
                                             </button>
                                           </div>
 

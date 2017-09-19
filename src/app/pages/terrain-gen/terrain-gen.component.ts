@@ -70,7 +70,7 @@ export class TerrainGenComponent implements AfterViewInit {
       if(this.authService.authenticated){
         console.log(this.authService.currentUser.email);
         this.configurePiwikTracker.setUserId(`"${this.authService.currentUser.email}"`);
-       
+
         this.usePiwikTracker.trackPageView();
       }else {console.log("Not authenticated");
       this.usePiwikTracker.trackPageView();}
@@ -302,9 +302,11 @@ export class TerrainGenComponent implements AfterViewInit {
   }
 
 
-  selectImg(terrain) {
-    terrain.selected = !terrain.selected;
-    this.selectedImgs = this.userTerrains.filter((ter) => ter.selected);
+  selectImg(event, terrain) {
+    if (event.target.classList[0] === 'item-row' || event.target.classList[0] === 'overlay') {
+      terrain.selected = !terrain.selected;
+      this.selectedImgs = this.userTerrains.filter((ter) => ter.selected);
+    }
   }
 
   deleteSelected() {
