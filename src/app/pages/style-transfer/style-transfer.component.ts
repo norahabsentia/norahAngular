@@ -319,12 +319,22 @@ export class StyleTransferComponent implements AfterViewInit {
     }
 
     wnd.downloadAnim = function () {
-      saveToFirebase();
+      //saveToFirebase();
       const txt: any = document.getElementById('animation_name');
       const animName = txt.value;
+      console.log(animName);
       gameInstance.SendMessage('ControllerHelper', 'ExportFromOutside', animName);
     };
 
+    wnd.AnimationsLoadedInWebPlayer=function(){
+      console.log("AnimationsLoadedInWebPlayer");
+      }
+      wnd.UpdateInfo=function(){
+        console.log("UpdateInfo");
+      }
+      wnd.AnimationExported=function(){
+        console.log("AnimationExported");
+      }
     wnd.saveAnim = function () {
 
       const user = firebase.auth().currentUser;

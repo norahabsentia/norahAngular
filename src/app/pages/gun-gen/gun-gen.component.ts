@@ -24,7 +24,7 @@ declare var ValidateInputsThenApply: any;
 export class GunGenComponent implements AfterViewInit {
 
   currentComponent = 'mountains';
-  activeLink = 'Sniper';
+  activeLink = 'ActionRifle';
   isGenerate = false;
   isOpen = true;
   guns = [];
@@ -319,30 +319,56 @@ export class GunGenComponent implements AfterViewInit {
   }
 
   selectImg(event, tera) {
-    console.log(tera);
+    event.stopPropagation();
+    event.preventDefault();
+    let isPresent = false;
+    let imgIndex = 0;
+    console.log('be-for',tera, this.selectedImgs);
+    this.selectedImgs.forEach(t => {
+      if (tera === t) {
+        isPresent = true;
+        console.log('Inside if');
+        this.selectedImgs.splice(imgIndex, 1);
+      } else {
+        if (this.selectedImgs.length === 2) {
+          isPresent = true;
+          return;
+        }
+      }
+      imgIndex = imgIndex + 1;
+    });
     const images = document.getElementsByClassName('item');
     //for (let i = 0; i < images.length; i++) {
     //if ( images[i].getElementsByTagName('input')[0] && images[i].getElementsByTagName('input')[0].checked) {
-    if (event.currentTarget.getElementsByTagName('input')[0] && event.currentTarget.getElementsByTagName('input')[0].checked) {
+    // if (event.currentTarget.getElementsByTagName('input')[0] && event.currentTarget.getElementsByTagName('input')[0].checked) {
+    if(this.selectedImgs.length < 2) {
       const test = event.currentTarget.getElementsByClassName('fa-check-circle-o');
       test[0].style.display = test[0].style.display === 'none' ? '' : 'none';
       event.currentTarget.getElementsByTagName('input')[0].checked = true;
+    }
       //images[i].classList.toggle('active-img');
       // event.currentTarget.classList.toggle('active-img');
-    }
+    // }
+    // 
 
-    const images2 = document.getElementById('gen2-images').getElementsByClassName('item');
-    const selectedCount = 0;
-    this.showDeleteSelected = false;
-    this.selectedImgs = []
-    for (let i = 0; i < images2.length; i++) {
-      if (images2[i].getElementsByTagName('input')[0] &&
-        images2[i].getElementsByTagName('input')[0].type === 'checkbox' &&
-        images2[i].getElementsByTagName('input')[0].checked) {
-        this.showDeleteSelected = false;
-        // this.selectedImgs.push(tera);
-      }
+
+
+    if(!isPresent){
+      this.selectedImgs.push(tera);
     }
+    console.log('after push', this.selectedImgs);
+    // const images2 = document.getElementById('gen2-images').getElementsByClassName('item');
+    // const selectedCount = 0;
+    // this.showDeleteSelected = false;
+    // this.selectedImgs = []
+    // for (let i = 0; i < images2.length; i++) {
+    //   if (images2[i].getElementsByTagName('input')[0] &&
+    //     images2[i].getElementsByTagName('input')[0].type === 'checkbox' &&
+    //     images2[i].getElementsByTagName('input')[0].checked) {
+    //     this.showDeleteSelected = false;
+    //     // this.selectedImgs.push(tera);
+    //   }
+    // }
 
   }
 
