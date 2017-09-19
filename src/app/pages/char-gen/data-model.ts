@@ -268,4 +268,12 @@ export const DefaultInputValues = {
     "measure/measure-napetowaist-dist-decr|incr":0.0,
     "measure/measure-waist-circ-decr|incr":0.0,
     "measure/measure-waisttohip-dist-decr|incr":0.0,
+    "custom/Cheeks":1.0,
+    "custom/Chin":1.0,
+    "custom/Eyes":1.0,
+    "custom/Ears":1.0,
+    "custom/Forehead":1.0,
+    "custom/Jaw":1.0,
+    "custom/Lips":1.0,
+    "custom/Nose":1.0,
 }
