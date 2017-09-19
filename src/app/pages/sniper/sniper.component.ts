@@ -4,7 +4,7 @@ import {HttpModule, Http,Response,Headers,RequestOptions, Request, RequestMethod
 
 import { Enemies } from './../../enemies';
 import { Npcs } from './../../npcs';
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'Angular2Piwik';
+import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
 
 

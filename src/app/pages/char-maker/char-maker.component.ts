@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { NouiFormatter } from 'ng2-nouislider';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'Angular2Piwik';
+import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
 
 

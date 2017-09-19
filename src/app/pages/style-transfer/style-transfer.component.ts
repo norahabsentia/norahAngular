@@ -2,7 +2,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import * as firebase from 'firebase';
 import $ from 'jquery/dist/jquery';
 import { GlobalRef } from '../../global-ref';
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'Angular2Piwik';
+import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
 
 

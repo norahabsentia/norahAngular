@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Http, RequestOptions, Headers, URLSearchParams} from '@angular/http'
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'Angular2Piwik';
+import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
 import "rxjs/Rx";
 

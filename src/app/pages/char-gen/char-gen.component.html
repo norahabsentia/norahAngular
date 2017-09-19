@@ -168,7 +168,7 @@
 
               <div class="an-btn-below-img clearfix">
                 <!-- <a href="javascript:void(0)" class="addgame-btn" (click)="exportFbx(true)"> Add to game </a> -->
-                <a style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx()"> Export fbx </a>
+                <a *ngIf="hideFbxExport" style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx(false,selectedImage1)"> Export FBX </a>
               </div>
             </div>
             <div class="an-main-img" *ngIf="selectedImage2.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedImage1.file === '' && selectedImage3.file === '') }">
@@ -176,7 +176,7 @@
               
               <div class="an-btn-below-img clearfix">
                 <!-- <a href="javascript:void(0)" class="addgame-btn" (click)="exportFbx(true)"> Add to game </a> -->
-                <a style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx()"> Export fbx </a>
+                <a  style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx(false,selectedImage2)"> Export FBX </a>
               </div>
             </div>
             <div class="an-main-img" *ngIf="selectedImage3.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedImage1.file === '' && selectedImage3.file === '') }">
@@ -184,7 +184,7 @@
               
               <div class="an-btn-below-img clearfix">
                 <!-- <a href="javascript:void(0)" class="addgame-btn" (click)="exportFbx(true)"> Add to game </a> -->
-                <a style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx()"> Export fbx </a>
+                <a style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx()"> Export FBX </a>
               </div>
             </div>
           </div>

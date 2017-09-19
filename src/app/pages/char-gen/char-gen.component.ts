@@ -17,7 +17,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { SwiperComponent, SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'Angular2Piwik';
+import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
 
 
@@ -160,6 +160,8 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     prevButton: null,//'.swiper-button-prev'
     spaceBetween: 15,
   };
+  public hideFbxExport : boolean = false;
+  public hideGuide : boolean = false;
 
   constructor(
     private configurePiwikTracker: ConfigurePiwikTracker,
@@ -250,7 +252,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
 
     this.socket.on('repo',(data) => {
       console.log("Body parts received..");;
-      console.log(data);
+      //console.log(data);
       this.bodyParts = data;
     });
 //get repo
@@ -355,6 +357,8 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
             gen.setActive();
             this.mergedFiles = gen;
             this.selectedImage2 = Object.assign({}, gen.files[0]);
+            this.selectedImage1 = Object.assign({}, gen.files[0]);
+            
             this.input1Image = Object.assign({}, this.selectedImage2);
             this.selectedImage3.file = '';
             this.selectedImage1.file = '';
@@ -419,6 +423,9 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     }
 
     let inputVal = Object.assign({}, this.selectedImage1);
+    console.log("Input Val merge");
+    
+    console.log(inputVal)
 
     for(var attr in this.selectedBodyPart){
       if(inputVal[attr]) {
@@ -461,6 +468,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
       } else {
         if (pos === "M" && this.mergedFiles.files[index] !== '') { 
           this.selectedImage2 = Object.assign({}, this.mergedFiles.files[index]);
+         // this.selectedImage1 = Object.assign({}, this.mergedFiles.files[index]);
           // this.input1Image = Object.assign({}, this.selectedImage2);
         }
       }
@@ -631,7 +639,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     request.onreadystatechange = () => {
       if (request.readyState === 4) {
         if (request.status === 200) {
-          console.log("sUCCESS");
+          console.log("Success");
           var d = JSON.parse(request.response);
           console.log(d);
 
@@ -640,7 +648,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
           this.FileUploadId = d.id;
           this.showMessag("Files successfully uploaded  ID:" + d.id);
         } else {
-          console.log("fAILED");
+          console.log("Failed");
           this.showMessag("Failed to upload Files");
 
           //this.toaster.pop('error',"Char maker ","Failed to upload Files");
@@ -677,7 +685,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
 
     //fetch the requestd body part
 
-    console.log("fecthcing parts: " + part);
+    console.log("Fetching parts: " + part);
     if(part == "face") {
       this.showFace = true;
       part = "cheek";
@@ -700,7 +708,15 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
   }
 
   bodyPartSelected(index: number){
-
+console.log("got a click");
+if(!this.hideGuide){
+  this.hideGuide=true;
+  this.hideFbxExport=true;
+  this.selectedImage1.file = '';
+  console.log("Should be triggered once");
+}else{
+ console.log("Should be triggered everytime");
+}
     try{
       this.selectedBodyPart = Object.assign({}, this.bodyParts.files[index]);
       this.selectedImage3 = Object.assign({}, this.selectedBodyPart);
@@ -730,7 +746,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
 
   }
 
-  exportFbx(addToGame: boolean = false) {
+  exportFbx(addToGame: boolean = false,image) {
 
     //input.json from selected Image
 
@@ -742,7 +758,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
       this.showMessag("Please generate model to export");
       return;
     }
-    let inputVal = Object.assign({}, this.selectedImage1);
+    let inputVal = Object.assign({}, image);
     delete inputVal.file;
     console.log(inputVal);
     console.log("addtogame" + addToGame);
@@ -811,17 +827,17 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     var imageFilename = newObjRef.key + ".png";
     toastr.info("Uploading file to storage");
     firebase.storage().ref('/gameLibrary/charModels').child(`${filename}`).put(fbxfile).then((snapshot) => {
-      console.log(snapshot);
+      //console.log(snapshot);
       var obj = {
         modelLink: snapshot.downloadURL,
         modelRef: snapshot.ref.fullPath
       };
-      console.log(obj);
+      //console.log(obj);
       firebase.storage().ref('/gameLibrary/charModels').child(`${imageFilename}`).put(imageFile).then((snapshot) => {
         obj["imageLink"] = snapshot.downloadURL;
         obj["imageRef"] = snapshot.ref.fullPath;
         newObjRef.set(obj).then((d) => {
-          console.log(d);
+          //console.log(d);
           toastr.info("File has been added to library.");
         });
       });

@@ -152,43 +152,97 @@
     </div>
 </div>
 <div class="modal-unity" id="unity">
-    <div class="modal-content">
-        <div class="leftview col-xs-3">
-            <div id="leftView1">
-                <br><br> mouse left click and drag - rotate terrain
-                <br> mouse right click and drag - rotate viewing angle
-                <br><br> enter - switch viewing modes
-                <br> esc - to close 3D terrain viewer
-            </div>
-            <div id="leftView2">
-                <br><br> mouse move - rotate viewing angle
-                <br><br> enter - switch viewing mode
-                <br> esc - to close 3D terrain viewer
-            </div>
+  <div class="modal-content">
+    <div class="leftview col-xs-3">
+      <div id="leftView1">
+        <div class="row">
+          <img src="assets/images/2.png" alt="" class="col-xs-1">
+          <div class="col-xs-10">Mouse left click and drag - rotate terrain</div>
         </div>
-        <div class="col-xs-6" id="gameContainer"></div>
-        <div class="rightview col-xs-3">
-            <div id="rightView1">
-                <br><br> W / up arrow - front
-                <br> S / down arrow - back
-                <br> A / left arrow - left
-                <br> D / right arrow - right
-                <br> Q - up
-                <br> E - down
-                <br> + shift - accelerate
-            </div>
-                <div id="rightView2">
-                <br><br>
-                <br> W / up arrow - front
-                <br> S / down arrow - back
-                <br> A / left arrow - left
-                <br> D / right arrow - right
-                <br> space - jump
-                <br> + shift - accelerate
-                </div>
-            </div>
+        <div class="row">
+          <img src="assets/images/1.png" alt="" class="col-xs-1">
+          <div class="col-xs-10">Mouse right click and drag - rotate viewing angle</div>
+        </div>
+        <div class="row">
+          <img src="assets/images/4.png" alt="" class="col-xs-1">
+          <div class="col-xs-10">Enter - <br/> switch viewing modes</div>
+        </div>
+        <div class="row">
+          <img src="assets/images/3.png" alt="" class="col-xs-1">
+          <div class="col-xs-10">Esc - <br/> to close 3D terrain viewer</div>
+        </div>
+
+      </div>
+      <div id="leftView2">
+        <div class="row">
+            <img src="assets/images/2.png" alt="" class="col-xs-1">
+            <div class="col-xs-10">Mouse left click and drag - rotate terrain</div>
+          </div>
+          <div class="row">
+            <img src="assets/images/1.png" alt="" class="col-xs-1">
+            <div class="col-xs-10">Mouse right click and drag - rotate viewing angle</div>
+          </div>
+          <div class="row">
+            <img src="assets/images/4.png" alt="" class="col-xs-1">
+            <div class="col-xs-10">Enter - <br/> switch viewing modes</div>
+          </div>
+          <div class="row">
+            <img src="assets/images/3.png" alt="" class="col-xs-1">
+            <div class="col-xs-10">Esc - <br/> to close 3D terrain viewer</div>
+          </div>
+      </div>
+    </div>
+    <div class="col-xs-6" id="gameContainer"></div>
+    <div class="rightview col-xs-3">
+      <div id="rightView1">
+        <div class="col-xs-12">
+          W / up arrow - Front
+        </div>
+        <div class="col-xs-12">
+          S / down arrow - Back
+        </div>
+        <div class="col-xs-12">
+          A / left arrow - Left
+        </div>
+        <div class="col-xs-12">
+          D / right arrow - Right
+        </div>
+        <div class="col-xs-12">
+          Q - Up
+        </div>
+        <div class="col-xs-12">
+          E - Down
+        </div>
+        <div class="col-xs-12">
+          + shift - Accelerate
+        </div>
+      </div>
+      <div id="rightView2">
+        <div class="col-xs-12">
+            W / up arrow - Front
+          </div>
+          <div class="col-xs-12">
+            S / down arrow - Back
+          </div>
+          <div class="col-xs-12">
+            A / left arrow - Left
+          </div>
+          <div class="col-xs-12">
+            D / right arrow - Right
+          </div>
+          <div class="col-xs-12">
+            Q - Up
+          </div>
+          <div class="col-xs-12">
+            E - Down
+          </div>
+          <div class="col-xs-12">
+            + shift - Accelerate
+          </div>
+      </div>
     </div>
   </div>
+</div>
 <div class="blockUI blockOverlay" *ngIf="!unityLoaded"></div>
 <div class="blockUILoader" *ngIf="!unityLoaded">
   <img src="assets/images/loading.gif" alt="">
