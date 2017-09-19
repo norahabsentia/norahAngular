@@ -46,7 +46,7 @@ export class GunGenComponent implements AfterViewInit {
     private usePiwikTracker: UsePiwikTracker,
     private authService: AuthService
   ) {
-  
+
     const wnd = this.global.nativeGlobal;
     this.toastr = wnd.toastr;
 
@@ -278,7 +278,7 @@ export class GunGenComponent implements AfterViewInit {
         images[i].getElementsByTagName('input')[0].checked = false;
         const test = images[i].getElementsByClassName('fa-check-circle-o') as HTMLCollectionOf<HTMLElement>;
         test[0].style.display = test[0].style.display === 'none' ? '' : 'none';
-        images[i].classList.toggle('active-img');
+        // images[i].classList.toggle('active-img');
       }
 
     }
@@ -328,7 +328,7 @@ export class GunGenComponent implements AfterViewInit {
       test[0].style.display = test[0].style.display === 'none' ? '' : 'none';
       event.currentTarget.getElementsByTagName('input')[0].checked = true;
       //images[i].classList.toggle('active-img');
-      event.currentTarget.classList.toggle('active-img');
+      // event.currentTarget.classList.toggle('active-img');
     }
 
     const images2 = document.getElementById('gen2-images').getElementsByClassName('item');
@@ -340,7 +340,7 @@ export class GunGenComponent implements AfterViewInit {
         images2[i].getElementsByTagName('input')[0].type === 'checkbox' &&
         images2[i].getElementsByTagName('input')[0].checked) {
         this.showDeleteSelected = false;
-        this.selectedImgs.push(tera);
+        // this.selectedImgs.push(tera);
       }
     }
 
