@@ -2,12 +2,6 @@ import { AfterViewInit, Component } from '@angular/core';
 import * as firebase from 'firebase';
 import $ from 'jquery/dist/jquery';
 import { GlobalRef } from '../../global-ref';
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
-import { AuthService } from '../auth/auth.service';
-
-
-declare const $: any;
-declare const jQuery: any;
 
 @Component({
   selector: 'app-style-transfer',
@@ -17,23 +11,12 @@ declare const jQuery: any;
 export class StyleTransferComponent implements AfterViewInit {
   root = 0;
 
-  constructor(    private configurePiwikTracker: ConfigurePiwikTracker,
-    private usePiwikTracker: UsePiwikTracker,
-    private authService: AuthService,private global: GlobalRef) {
-    
+  constructor(private global: GlobalRef) {
   
   }
 
   ngAfterViewInit() {
-    $(window).load(() => {
-      this.configurePiwikTracker.setDocumentTitle();
-      if(this.authService.authenticated){
-        console.log(this.authService.currentUser.email);
-        this.configurePiwikTracker.setUserId(`"${this.authService.currentUser.email}"`);
-        this.usePiwikTracker.trackPageView();
-      }else {console.log("Not authenticated");
-      this.usePiwikTracker.trackPageView();}
-    });
+
     let gameInstance;
     const wnd = this.global.nativeGlobal;
     const animationArray = [];
@@ -283,39 +266,44 @@ export class StyleTransferComponent implements AfterViewInit {
     };
 
     function saveToFirebase() {
-      // Collect the values from form.
-      const objectToSave = {
-        name: $('#animation_name').val(),
-        blending_options: {
-          loop: $('input[name=\'Loop\']').is(':checked'),
-          timeStretch: $('input[name=\'TimeStretch\']').is(':checked'),
-          startOffs: $('input[name=\'StartOffs\']').val()
-        },
-        blending_tools: {
-          head: $('input[name=\'Head\']').val(),
-          trso: $('input[name=\'Trso\']').val(),
-          armL: $('input[name=\'ArmL\']').val(),
-          armR: $('input[name=\'ArmR\']').val(),
-          legL: $('input[name=\'LegL\']').val(),
-          legR: $('input[name=\'LegR\']').val(),
-          fing: $('input[name=\'Fing\']').val(),
-          root: $('input[name=\'Root\']').val()
-        }
-      };
+     var objectToSave = {
+                name: $("#animation_name").val(),
+                blending_options: {
+                    loop: jQuery("input[name='Loop']").is(":checked"),
+                    timeStretch: jQuery("input[name='TimeStretch']").is(":checked"),
+                    startOffs: jQuery("input[name='StartOffs']").val()
+                },
+                blending_tools: {
+                    head: jQuery("input[name='Head']").val(),
+                    trso: jQuery("input[name='Trso']").val(),
+                    armL: jQuery("input[name='ArmL']").val(),
+                    armR: jQuery("input[name='ArmR']").val(),
+                    legL: jQuery("input[name='LegL']").val(),
+                    legR: jQuery("input[name='LegR']").val(),
+                    fing: jQuery("input[name='Fing']").val(),
+                    root: jQuery("input[name='Root']").val()
+                }
+            };
 
-      // Get the current user id.
-      const userId = firebase.auth().currentUser.uid;
+            // Get the current user id.
+            var userId = firebase.auth().currentUser.uid;
 
-      // Get the reference to new object in firebase.
-      const ref = firebase
-        .database()
-        .ref('usernames')
-        .child(userId)
-        .child('styletransfertool')
-        .push();
+            // Get the reference to new object in firebase.
+            var ref = firebase
+                .database()
+                .ref("usernames")
+                .child(userId)
+                .child("styletranfertool")
+                .push()
 
-      // Set the value for the newly created reference.
-      ref.set(objectToSave);
+            // Set the value for the newly created reference.
+            .set(JSON.parse(JSON.stringify(objectToSave)));
+
+
+
+            
+               
+      
     }
 
     wnd.downloadAnim = function () {
@@ -324,6 +312,7 @@ export class StyleTransferComponent implements AfterViewInit {
       const animName = txt.value;
       gameInstance.SendMessage('ControllerHelper', 'ExportFromOutside', animName);
     };
+
 
     wnd.saveAnim = function () {
 
@@ -336,7 +325,7 @@ export class StyleTransferComponent implements AfterViewInit {
           name: user.displayName
         },
         animUrl: 'Not available',
-        styletransfertool: {
+        styletranfertool: {
           name: $('#animation_name').val(),
           blending_options: {
             loop: $('input[name=\'Loop\']').is(':checked'),
@@ -381,10 +370,10 @@ export class StyleTransferComponent implements AfterViewInit {
       // Set the value for the newly created reference.
       try {
         ref.set(objectToSave);
-        //alert('Anim: ' + objectToSave.styletransfertool.name + ' has been saved to firebase');
+        alert('Anim: ' + objectToSave.styletranfertool.name + ' has been saved to firebase');
 
       } catch (e) {
-        //alert('Failed to save the anim..!' + e);
+        alert('Failed to save the anim..!' + e);
       }
 
 
