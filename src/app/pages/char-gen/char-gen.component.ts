@@ -339,7 +339,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
         if(gen.id == id){
           gen.setActive();
           this.processedFiles = gen;
-          this.selectedImage1 = Object.assign({}, gen.files[pos]);
+          this.selectedImage1 = Object.assign({}, gen.files[0]);
           this.input1Image = Object.assign({}, this.selectedImage1);
           this.selectedImage2.file = '';
           this.selectedImage3.file = '';
@@ -354,8 +354,8 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
           if(gen.id == id){
             gen.setActive();
             this.mergedFiles = gen;
-            this.selectedImage2 = Object.assign({}, gen.files[pos]);
-            this.selectedImage1 = Object.assign({}, gen.files[pos]);
+            this.selectedImage2 = Object.assign({}, gen.files[0]);
+            this.selectedImage1 = Object.assign({}, gen.files[0]);
             
             this.input1Image = Object.assign({}, this.selectedImage2);
             this.selectedImage3.file = '';
@@ -466,6 +466,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
       } else {
         if (pos === "M" && this.mergedFiles.files[index] !== '') { 
           this.selectedImage2 = Object.assign({}, this.mergedFiles.files[index]);
+         // this.selectedImage1 = Object.assign({}, this.mergedFiles.files[index]);
           // this.input1Image = Object.assign({}, this.selectedImage2);
         }
       }
@@ -735,7 +736,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
 
   }
 
-  exportFbx(addToGame: boolean = false) {
+  exportFbx(addToGame: boolean = false,image) {
 
     //input.json from selected Image
 
@@ -747,7 +748,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
       this.showMessag("Please generate model to export");
       return;
     }
-    let inputVal = Object.assign({}, this.selectedImage1);
+    let inputVal = Object.assign({}, image);
     delete inputVal.file;
     console.log(inputVal);
     console.log("addtogame" + addToGame);
