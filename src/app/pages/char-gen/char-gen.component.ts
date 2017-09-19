@@ -160,8 +160,6 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     prevButton: null,//'.swiper-button-prev'
     spaceBetween: 15,
   };
-  public hideFbxExport : boolean = false;
-  public hideGuide : boolean = false;
 
   constructor(
     private configurePiwikTracker: ConfigurePiwikTracker,
@@ -252,7 +250,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
 
     this.socket.on('repo',(data) => {
       console.log("Body parts received..");;
-      //console.log(data);
+      console.log(data);
       this.bodyParts = data;
     });
 //get repo
@@ -639,7 +637,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     request.onreadystatechange = () => {
       if (request.readyState === 4) {
         if (request.status === 200) {
-          console.log("Success");
+          console.log("sUCCESS");
           var d = JSON.parse(request.response);
           console.log(d);
 
@@ -648,7 +646,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
           this.FileUploadId = d.id;
           this.showMessag("Files successfully uploaded  ID:" + d.id);
         } else {
-          console.log("Failed");
+          console.log("fAILED");
           this.showMessag("Failed to upload Files");
 
           //this.toaster.pop('error',"Char maker ","Failed to upload Files");
@@ -685,7 +683,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
 
     //fetch the requestd body part
 
-    console.log("Fetching parts: " + part);
+    console.log("fecthcing parts: " + part);
     if(part == "face") {
       this.showFace = true;
       part = "cheek";
@@ -708,15 +706,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
   }
 
   bodyPartSelected(index: number){
-console.log("got a click");
-if(!this.hideGuide){
-  this.hideGuide=true;
-  this.hideFbxExport=true;
-  this.selectedImage1.file = '';
-  console.log("Should be triggered once");
-}else{
- console.log("Should be triggered everytime");
-}
+
     try{
       this.selectedBodyPart = Object.assign({}, this.bodyParts.files[index]);
       this.selectedImage3 = Object.assign({}, this.selectedBodyPart);
@@ -827,17 +817,17 @@ if(!this.hideGuide){
     var imageFilename = newObjRef.key + ".png";
     toastr.info("Uploading file to storage");
     firebase.storage().ref('/gameLibrary/charModels').child(`${filename}`).put(fbxfile).then((snapshot) => {
-      //console.log(snapshot);
+      console.log(snapshot);
       var obj = {
         modelLink: snapshot.downloadURL,
         modelRef: snapshot.ref.fullPath
       };
-      //console.log(obj);
+      console.log(obj);
       firebase.storage().ref('/gameLibrary/charModels').child(`${imageFilename}`).put(imageFile).then((snapshot) => {
         obj["imageLink"] = snapshot.downloadURL;
         obj["imageRef"] = snapshot.ref.fullPath;
         newObjRef.set(obj).then((d) => {
-          //console.log(d);
+          console.log(d);
           toastr.info("File has been added to library.");
         });
       });
