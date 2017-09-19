@@ -2,12 +2,6 @@ import { AfterViewInit, Component } from '@angular/core';
 import * as firebase from 'firebase';
 import $ from 'jquery/dist/jquery';
 import { GlobalRef } from '../../global-ref';
-import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
-import { AuthService } from '../auth/auth.service';
-
-
-declare const $: any;
-declare const jQuery: any;
 
 @Component({
   selector: 'app-style-transfer',
@@ -17,23 +11,12 @@ declare const jQuery: any;
 export class StyleTransferComponent implements AfterViewInit {
   root = 0;
 
-  constructor(    private configurePiwikTracker: ConfigurePiwikTracker,
-    private usePiwikTracker: UsePiwikTracker,
-    private authService: AuthService,private global: GlobalRef) {
-    
+  constructor(private global: GlobalRef) {
   
   }
 
   ngAfterViewInit() {
-    $(window).load(() => {
-      this.configurePiwikTracker.setDocumentTitle();
-      if(this.authService.authenticated){
-        console.log(this.authService.currentUser.email);
-        this.configurePiwikTracker.setUserId(`"${this.authService.currentUser.email}"`);
-        this.usePiwikTracker.trackPageView();
-      }else {console.log("Not authenticated");
-      this.usePiwikTracker.trackPageView();}
-    });
+
     let gameInstance;
     const wnd = this.global.nativeGlobal;
     const animationArray = [];
@@ -311,7 +294,7 @@ export class StyleTransferComponent implements AfterViewInit {
         .database()
         .ref('usernames')
         .child(userId)
-        .child('styletransfertool')
+        .child('styletranfertool')
         .push();
 
       // Set the value for the newly created reference.
@@ -336,7 +319,7 @@ export class StyleTransferComponent implements AfterViewInit {
           name: user.displayName
         },
         animUrl: 'Not available',
-        styletransfertool: {
+        styletranfertool: {
           name: $('#animation_name').val(),
           blending_options: {
             loop: $('input[name=\'Loop\']').is(':checked'),
@@ -381,10 +364,10 @@ export class StyleTransferComponent implements AfterViewInit {
       // Set the value for the newly created reference.
       try {
         ref.set(objectToSave);
-        //alert('Anim: ' + objectToSave.styletransfertool.name + ' has been saved to firebase');
+        alert('Anim: ' + objectToSave.styletranfertool.name + ' has been saved to firebase');
 
       } catch (e) {
-        //alert('Failed to save the anim..!' + e);
+        alert('Failed to save the anim..!' + e);
       }
 
 
