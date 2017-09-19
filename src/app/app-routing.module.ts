@@ -53,10 +53,6 @@ const appRoutes: Routes = [
     component: GameMakerComponent
   },
   {
-    path: 'game-maker.html',
-    component: HomeComponent      //Change this as required
-  },
-  {
     path: 'char-maker',
     component: CharMakerComponent
   },
