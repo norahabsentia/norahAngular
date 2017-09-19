@@ -339,7 +339,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
         if(gen.id == id){
           gen.setActive();
           this.processedFiles = gen;
-          this.selectedImage1 = Object.assign({}, gen.files[0]);
+          this.selectedImage1 = Object.assign({}, gen.files[pos]);
           this.input1Image = Object.assign({}, this.selectedImage1);
           this.selectedImage2.file = '';
           this.selectedImage3.file = '';
@@ -354,7 +354,9 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
           if(gen.id == id){
             gen.setActive();
             this.mergedFiles = gen;
-            this.selectedImage2 = Object.assign({}, gen.files[0]);
+            this.selectedImage2 = Object.assign({}, gen.files[pos]);
+            this.selectedImage1 = Object.assign({}, gen.files[pos]);
+            
             this.input1Image = Object.assign({}, this.selectedImage2);
             this.selectedImage3.file = '';
             this.selectedImage1.file = '';
@@ -419,6 +421,9 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     }
 
     let inputVal = Object.assign({}, this.selectedImage1);
+    console.log("Input Val merge");
+    
+    console.log(inputVal)
 
     for(var attr in this.selectedBodyPart){
       if(inputVal[attr]) {
