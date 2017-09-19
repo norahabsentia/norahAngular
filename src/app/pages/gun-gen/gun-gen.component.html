@@ -84,7 +84,7 @@
                   <div class="col-md-3" *ngFor="let ter of userTerrains ; let i = index">
                     <div class="item" (click)="selectImg($event, ter)">
                       <label [for]="i">
-                          <i class="fa fa-check-circle-o fa-inverse" style="display: none;" aria-hidden="true"></i>
+                          <i class="fa fa-check-circle-o fa-inverse" *ngIf="ter.selected" aria-hidden="true"></i>
                           <img [src]='ter?ter.src:""' alt="">
                           <div class="overlay">
                             <div class="item-row">
