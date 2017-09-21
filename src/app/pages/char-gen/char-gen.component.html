@@ -83,7 +83,7 @@
                                 <button class="btn btn-outline-primary list-btn" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-list"></i></button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownBasic1">
                                     <li *ngFor="let gen of changeHistoryG;let i=index">
-                                        <a (click)="switchImage(gen.id, 'G')"> {{gen.title}} </a>
+                                        <a (click)="switchGenImage(gen.id)"> {{gen.title}} </a>
                                     </li>
                                 </ul>
                             </div>
@@ -92,7 +92,7 @@
                     <perfect-scrollbar class="an-head-details-scrollable" [config]="config">
                         <div class="head-detail-block content vertical-scroll-padding clearfix">
                             <div class="scroller-content">
-                                <div *ngFor="let pFile of processedFiles.files;let i=index" (click)="imageSelected(i, 'G')" [class]="pFile.file == selectedImage1.file ? 'block active' : 'block'">
+                                <div *ngFor="let pFile of processedFiles.files;let i=index" (click)="selectGenImage(i)" [class]="pFile.file == selectedGenImage.file ? 'block active' : 'block'">
                                     <img class="block_img " src={{pFile.file}}/>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                     </div>
                 </div>
 
-                <div class="object-container-dna an-dna-conatiner" [ngClass]="{'an-dna-height-strecher': (mergedFiles.id !== '' && selectedImage1.file === '' && selectedImage3.file === '') }">
+                <div class="object-container-dna an-dna-conatiner" [ngClass]="{'an-dna-height-strecher': (mergedFiles.id !== '' && selectedGenImage.file === '' && selectedRepoImage.file === '') }">
                     <div class="dna-code-title">
                         <h2> DNA CODE </h2>
                     </div>
@@ -120,24 +120,24 @@
                     <div class="block block-object ">
                         <span class="helper"></span>
                         <div class="an-display-flex overflow-scroll">
-                            <div class="an-main-img" *ngIf="selectedImage1.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedImage1.file === '' && selectedImage3.file === '') }">
-                                <img id="dnaCode_main_img" [src]="selectedImage1.file">
+                            <div class="an-main-img" *ngIf="selectedGenImage.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedGenImage.file === '' && selectedRepoImage.file === '') }">
+                                <img id="dnaCode_main_img" [src]="selectedGenImage.file">
 
                                 <div class="an-btn-below-img clearfix">
                                     <!-- <a href="javascript:void(0)" class="addgame-btn" (click)="exportFbx(true)"> Add to game </a> -->
-                                    <a *ngIf="hideFbxExport" style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx(false,selectedImage1)"> Export FBX </a>
+                                    <a *ngIf="hideFbxExport" style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx(false,selectedGenImage)"> Export FBX </a>
                                 </div>
                             </div>
-                            <div class="an-main-img" *ngIf="selectedImage2.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedImage1.file === '' && selectedImage3.file === '') }">
-                                <img id="dnaCode_main_img" [src]="selectedImage2.file">
+                            <div class="an-main-img" *ngIf="selectedMergedImage.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedGenImage.file === '' && selectedRepoImage.file === '') }">
+                                <img id="dnaCode_main_img" [src]="selectedMergedImage.file">
 
                                 <div class="an-btn-below-img clearfix">
                                     <!-- <a href="javascript:void(0)" class="addgame-btn" (click)="exportFbx(true)"> Add to game </a> -->
-                                    <a style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx(false,selectedImage2)"> Export FBX </a>
+                                    <a style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx(false,selectedMergedImage)"> Export FBX </a>
                                 </div>
                             </div>
-                            <div class="an-main-img" *ngIf="selectedImage3.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedImage1.file === '' && selectedImage3.file === '') }">
-                                <img id="dnaCode_main_img" [src]="selectedImage3.file">
+                            <div class="an-main-img" *ngIf="selectedRepoImage.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedGenImage.file === '' && selectedRepoImage.file === '') }">
+                                <img id="dnaCode_main_img" [src]="selectedRepoImage.file">
 
                                 <div class="an-btn-below-img clearfix">
                                     <!-- <a href="javascript:void(0)" class="addgame-btn" (click)="exportFbx(true)"> Add to game </a> -->
@@ -145,7 +145,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="object-container-dna-btm" *ngIf="!(mergedFiles.id !== '' && selectedImage1.file === '' && selectedImage3.file === '') && input1Image.file !== '' && input2Image.file !== ''">
+                        <div class="object-container-dna-btm" *ngIf="!(mergedFiles.id !== '' && selectedGenImage.file === '' && selectedRepoImage.file === '') && input1Image.file !== '' && input2Image.file !== ''">
                             <div class=" an-display-flex">
                                 <!-- <a href="javascript:void(0)" class="addgame-btn" (click)="exportFbx(true)"> Add to game </a>
               <a style="cursor: not-allowed" class="addgame-btn" style="margin-left: 10px" (click)="exportFbx()"> Export fbx </a> -->
@@ -157,7 +157,7 @@
                                     <button class="btn btn-outline-primary list-btn" id="dropdownBasic2" ngbDropdownToggle><i class="fa fa-list"></i></button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownBasic2">
                                         <li *ngFor="let gen of changeHistoryM;let i=index">
-                                            <a (click)="switchImage(gen.id, 'M')"> {{gen.title}} </a>
+                                            <a (click)="switchMergeImage(gen.id)"> {{gen.title}} </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -166,7 +166,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="an-head-details-horizontal" *ngIf="mergedFiles.id !== '' && selectedImage1.file === '' && selectedImage3.file === ''">
+                    <div class="an-head-details-horizontal" *ngIf="mergedFiles.id !== '' && selectedGenImage.file === '' && selectedRepoImage.file === ''">
                         <div class="horizontal-details">
                             <div class="head-detail">
                                 <h3> {{mergedFiles.title}} </h3>
@@ -174,7 +174,7 @@
                                     <button class="btn btn-outline-primary list-btn" id="dropdownBasic2" ngbDropdownToggle><i class="fa fa-list"></i></button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownBasic2">
                                         <li *ngFor="let gen of changeHistoryM;let i=index">
-                                            <a (click)="switchImage(gen.id, 'M')"> {{gen.title}} </a>
+                                            <a (click)="switchMergeImage(gen.id)"> {{gen.title}} </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -184,7 +184,7 @@
                             <div class="an-horizonatal-scrollbar">
                                 <div class="">
                                     <swiper class="" [config]="config" overlay-controls fxFlex *ngIf="mergedFiles.id !== ''">
-                                        <div class="swiper-slide" *ngFor="let mFile of mergedFiles.files;let i=index" style="display:inline-block;" (click)="imageSelected(i, 'M')" [class]="mFile.file == selectedImage2.file ? 'block active swiper-slide' : 'block swiper-slide'">
+                                        <div class="swiper-slide" *ngFor="let mFile of mergedFiles.files;let i=index" style="display:inline-block;" (click)="selectMergedImage(i)" [class]="mFile.file == selectedMergedImage.file ? 'block active swiper-slide' : 'block swiper-slide'">
                                             <div class="swiper-slide-content" fxLayoutAlign="center center ">
                                                 <img class="block_img" src={{mFile.file}}/>
                                             </div>
@@ -207,7 +207,7 @@
                         <perfect-scrollbar class="an-head-details-scrollable" [config]="config">
                             <div class="head-detail-block content vertical-scroll-padding clearfix">
                                 <div class="scroller-content">
-                                    <div *ngFor="let bodyPart of bodyParts.files;let i=index" (click)="repositorySelected(i)" [class]="selectedImage3.file !== '' && selectedImage3.file == bodyPart.file ? 'block active' : 'block'">
+                                    <div *ngFor="let bodyPart of bodyParts.files;let i=index" (click)="repositorySelected(i)" [class]="selectedRepoImage.file !== '' && selectedRepoImage.file == bodyPart.file ? 'block active' : 'block'">
                                         <img src={{bodyPart.file}} class="block_img ">
                                     </div>
                                 </div>
