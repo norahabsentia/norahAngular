@@ -74,12 +74,12 @@ export class SniperComponent implements OnInit {
     this.bundleIdentifier="com.absentia.sniper3d";
     this.versionCode="Test Run";
     this.versionNumber="1";
-    this.appIconFile=this.someURL;
+    this.appIconFile="https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2Ficon.png?alt=media&token=c584f865-70e5-41b4-9a1f-ec0a86c52b74";
     this.exportForAndroid="true";
     this.exportForIos="false";
     this.exportForWebGl="true";
   
-    this.sceneHeightMapFile=this.someURL;
+    this.sceneHeightMapFile="https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FGrass.jpg?alt=media&token=ac3b9acd-fc06-48f9-9e07-ef6401f3bd6b";
     this.textureTileSizeY="50";
     this.textureTileSizeX="50";
   
@@ -91,13 +91,13 @@ export class SniperComponent implements OnInit {
     this.playerPowerBody="100";
     this.playerPowerHead="10";
   
-    this.gunModelFile=this.someURL;
-    this.gunTextureFile=this.someURL;
-    this.gunHeightmapFile=this.someURL;
-    this.fireAnimationFile=this.someURL;
-    this.recoilAnimationFile=this.someURL;
-    this.fireSoundFile=this.someURL;
-    this.recoilSoundFile=this.someURL;
+    this.gunModelFile="https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FCartoonSMG.fbx?alt=media&token=5aaeda15-09be-4e71-8e43-e4c4315d4872";
+    this.gunTextureFile="https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FSMG.png?alt=media&token=28a40b6d-c214-4223-81d3-595c5f3b90ce";
+    this.gunHeightmapFile="https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FSMG_AO.png?alt=media&token=d24e9f8a-03f4-4626-ad6e-7b0ad39a0e98";
+    this.fireAnimationFile="https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FFireAnimation.anim?alt=media&token=7626425e-cb6c-4f00-86fc-dc9e52e73058";
+    this.recoilAnimationFile="https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FRecoilAnimation.anim?alt=media&token=c03a3a64-1138-4bd7-887e-86525d8e0379";
+    this.fireSoundFile="https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2Ffire.mp3?alt=media&token=1f418981-9ce3-4d5a-8099-f2d9cdc79c7e";
+    this.recoilSoundFile="https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2Freload.mp3?alt=media&token=e0b20c1a-1f9d-4d48-bc4b-767f82b7bfc9";
     this.range=1000;
     this.maxAngle=90;
     this.zoomScope=5;
@@ -113,9 +113,9 @@ export class SniperComponent implements OnInit {
 
   ngOnInit() {
     this.addEnemies();
-    this.addEnemies();
-    this.addNpcs();
-    this.addNpcs();
+    //this.addEnemies();
+    //this.addNpcs();
+    //this.addNpcs();
     this.addNpcs();
   }
 
@@ -173,13 +173,13 @@ urlSearchParams.append('GunInfo.MagSize' ,this.magSize);
 
 for(var i=0;i<this.enemies.length;i++){
   urlSearchParams.append('Enemies.Index' ,this.enemies[i].Index);
-  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].ModelFile`,this.someURL);
-  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].TextureFile`,this.someURL);
-  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].HeightmapFile`,this.someURL);
+  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].ModelFile`,this.enemies[i].ModelFile);
+  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].TextureFile`,this.enemies[i].TextureFile);
+  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].HeightmapFile`,this.enemies[i].HeightmapFile);
   urlSearchParams.append(`Enemies[${this.enemies[i].Index}].RouteIndex`,"0");
-  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].RunAnimationFile`,this.someURL);
-  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].WalkAnimationFile`,this.someURL);
-  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].FallAnimationFile`,this.someURL);
+  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].RunAnimationFile`,this.enemies[i].RunAnimationFile);
+  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].WalkAnimationFile`,this.enemies[i].WalkAnimationFile);
+  urlSearchParams.append(`Enemies[${this.enemies[i].Index}].FallAnimationFile`,this.enemies[i].FallAnimationFile);
   urlSearchParams.append(`Enemies[${this.enemies[i].Index}].Power.Leg`,"140");
   urlSearchParams.append(`Enemies[${this.enemies[i].Index}].Power.Body`,"450");
   urlSearchParams.append(`Enemies[${this.enemies[i].Index}].Power.Head`,"1300");
@@ -187,13 +187,13 @@ for(var i=0;i<this.enemies.length;i++){
 } 
 for(var i=0;i<this.npcs.length;i++){
   urlSearchParams.append('NPCs.Index' ,this.npcs[i].Index);
-  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].ModelFile`,this.someURL);
-  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].TextureFile`,this.someURL);
-  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].HeightmapFile`,this.someURL);
+  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].ModelFile`,this.npcs[i].ModelFile);
+  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].TextureFile`,this.npcs[i].TextureFile);
+  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].HeightmapFile`,this.npcs[i].HeightmapFile);
   urlSearchParams.append(`NPCs[${this.npcs[i].Index}].RouteIndex`,"0");
-  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].RunAnimationFile`,this.someURL);
-  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].WalkAnimationFile`,this.someURL);
-  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].FallAnimationFile`,this.someURL);
+  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].RunAnimationFile`,this.npcs[i].RunAnimationFile);
+  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].WalkAnimationFile`,this.npcs[i].WalkAnimationFile);
+  urlSearchParams.append(`NPCs[${this.npcs[i].Index}].FallAnimationFile`,this.npcs[i].FallAnimationFile);
   urlSearchParams.append(`NPCs[${this.npcs[i].Index}].Power.Leg`,"190");
   urlSearchParams.append(`NPCs[${this.npcs[i].Index}].Power.Body`,"450");
   urlSearchParams.append(`NPCs[${this.npcs[i].Index}].Power.Head`,"777");
@@ -208,8 +208,8 @@ let options = new RequestOptions({ headers: headers });
 
 
 let body = urlSearchParams.toString()
-
-    this.http.post('https://requestb.in/12x2dw51',body,options)
+// http://23.251.152.144/SniperBuilder/Builds/new?userId=ashish@gmail.com   https://requestb.in/1iqq9j11
+    this.http.post('https://requestb.in/1iqq9j11',body,options)
     .subscribe((result) => {
       console.log(result, 'Result reached')
     }, (err) => {
@@ -228,13 +228,13 @@ addEnemies(){
   this.guid =this.generateGuid();
 const enemy : Enemies={
   Index: this.guid,
-  ModelFile:this.someURL,
-  TextureFile:this.someURL,
-  HeightmapFile:this.someURL,
+  ModelFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FEnemy_Model1.fbx?alt=media&token=0e0c2dbc-fec4-42b7-adce-589a3c0d7cc6",
+  TextureFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FEnemy_Model1_normal.png?alt=media&token=16708cec-681a-4eed-bfcb-082984095407",
+  HeightmapFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FEnemy_Model1_normal.png?alt=media&token=16708cec-681a-4eed-bfcb-082984095407",
   RouteIndex:this.someURL,
-  RunAnimationFile:this.someURL,
-  WalkAnimationFile:this.someURL,
-  FallAnimationFile:this.someURL,
+  RunAnimationFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FHumanCharacter%40Running01.fbx?alt=media&token=d1f564d3-23bd-4c2b-bb69-3ddb6898d62d",
+  WalkAnimationFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FHumanCharacter%40Walking01.fbx?alt=media&token=25c60b03-f887-4c2a-ab76-c89a939e624d",
+  FallAnimationFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FHumanCharacter%40Walking01.fbx?alt=media&token=25c60b03-f887-4c2a-ab76-c89a939e624d",
   Leg:140,
   Body:450,
   Head:1300 
@@ -247,13 +247,13 @@ addNpcs(){
   this.guid =this.generateGuid();
   const npc : Npcs={
     Index: this.guid,
-    ModelFile:this.someURL,
-    TextureFile:this.someURL,
-    HeightmapFile:this.someURL,
+    ModelFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FEnemy_Model1.fbx?alt=media&token=0e0c2dbc-fec4-42b7-adce-589a3c0d7cc6",
+    TextureFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FEnemy_Model1_normal.png?alt=media&token=16708cec-681a-4eed-bfcb-082984095407",
+    HeightmapFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FEnemy_Model1_normal.png?alt=media&token=16708cec-681a-4eed-bfcb-082984095407",
     RouteIndex:this.someURL,
-    RunAnimationFile:this.someURL,
-    WalkAnimationFile:this.someURL,
-    FallAnimationFile:this.someURL,
+    RunAnimationFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FHumanCharacter%40Running01.fbx?alt=media&token=d1f564d3-23bd-4c2b-bb69-3ddb6898d62d",
+    WalkAnimationFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FHumanCharacter%40Walking01.fbx?alt=media&token=25c60b03-f887-4c2a-ab76-c89a939e624d",
+    FallAnimationFile:"https://firebasestorage.googleapis.com/v0/b/norahanimation.appspot.com/o/gameAssets%2FHumanCharacter%40Walking01.fbx?alt=media&token=25c60b03-f887-4c2a-ab76-c89a939e624d",
     Leg:140,
     Body:450,
     Head:1300 
