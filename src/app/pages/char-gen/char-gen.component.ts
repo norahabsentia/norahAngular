@@ -454,41 +454,7 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     this.sendValues(inputVal, outputVal, "Merge " + this.mergeCount);
   }
  
-  imageSelected(index: number, pos: string){
-    console.log("got a click");
-    if(!this.hideGuide){
-      this.hideGuide=true;
-      this.hideFbxExport=true;
-      this.selectedImage1.file = '';
-      console.log("Should be triggered once");
-    }else{
-      this.hideFbxExport=true;
-     console.log("Should be triggered everytime");
-    }
-    try {
-      if (pos === "G" && this.processedFiles.files[index] !== '') { 
-        this.selectedImage1 = Object.assign({}, this.processedFiles.files[index]);
-        this.input1Image = Object.assign({}, this.selectedImage1);
-        if (this.selectedImage3.file === "" && this.selectedImage2.file !== "") {
-          this.input2Image = Object.assign({}, this.selectedImage2);
-        }
-        if (this.selectedImage3.file !== "" && this.selectedImage2.file !== "") {
-          this.selectedImage2.file = "";
-        }
-      } else {
-        if (pos === "M" && this.mergedFiles.files[index] !== '') { 
-          this.selectedImage2 = Object.assign({}, this.mergedFiles.files[index]);
-         // this.selectedImage1 = Object.assign({}, this.mergedFiles.files[index]);
-          // this.input1Image = Object.assign({}, this.selectedImage2);
-        }
-      }
-    } catch(ex) {
 
-      //Error Handling to be implemented.
-
-    }
-
-  }
 
   scrollLeft() {
 
@@ -563,32 +529,6 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     }
 
     this.generationCount++;
-
-      /*
-      this.inputRes = {
-        "macrodetails/Age": this.Age[0]/10,
-        "macrodetails-height/Height": this.Height[0]/10,
-        "macrodetails/Gender": this.Sex[0]/10,
-        "macrodetails-universal/Weight": this.Weight[0]/10,
-        "macrodetails-proportions/BodyProportions":this.Proportion[0]/10,
-        "macrodetails-universal/Muscle":this.Muscle[0]/10,
-        "macrodetails/Asian": this.Asian[0]/10,
-        "macrodetails/African": this.African[0]/10,
-        "macrodetails/Caucasian": this.Caucasian[0]/10
-      }
-
-      this.outputRes = {
-        "macrodetails/Age": this.Age[1]/10,
-        "macrodetails-height/Height": this.Height[1]/10,
-        "macrodetails/Gender": this.Sex[1]/10,
-        "macrodetails-universal/Weight": this.Weight[1]/10,
-        "macrodetails-proportions/BodyProportions":this.Proportion[1]/10,
-        "macrodetails-universal/Muscle":this.Muscle[1]/10,
-        "macrodetails/Asian": this.Asian[1]/10,
-        "macrodetails/African": this.African[1]/10,
-        "macrodetails/Caucasian": this.Caucasian[1]/10
-      }*/
-
 
     this.inputRes = {
       "macrodetails/Age": this.Age[0]/10,
@@ -668,16 +608,6 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
       }
     }
 
-    /*request.open(
-                "POST",
-                "http://localhost:8080/upload"  //replace with the target server which is handling uploads
-                //"http://130.211.167.206:2000/upload"
-               // "http://192.168.1.114:3000/users/abc"
-      ,true
-              );
-      */
-    //request.send(form);
-
   }
 
   sendValues(inputValues, outputValues, genrationName) {
@@ -691,55 +621,67 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
 
   showFace: boolean = false;
 
-  bodyPartTypeSelected(part: string) {
-
-    //fetch the requestd body part
-
-    console.log("Fetching parts: " + part);
-    if(part == "face") {
-      this.showFace = true;
-      part = "cheek";
-    } else {
-      this.showFace = false;
-      this.bodyPartImage = `assets/images/human/${part}.png`; //Please Recheck this function. Suspected Ambiguity.
+  //Image selection for Generation image 
+  imageSelected(index: number, pos: string){
+    console.log("got a click");
+    if(!this.hideGuide){
+      this.hideGuide=true;
+      this.hideFbxExport=true;
+      this.selectedImage1.file = '';
+      console.log("Should be triggered once");
+    }else{
+      this.hideFbxExport=true;
+     console.log("Should be triggered everytime");
     }
-    this.socket.emit("bodyPart",{part:part});
-
-  }
-
-  facePartTypeSelected(part:string){
-
-    //fetch the requestd body part
-
-    console.log("fecthcing parts: " + part);
-    this.bodyPartImage = `assets/images/human/${part}.png`;
-    this.socket.emit("bodyPart",{part:part});
-
-  }
-
-  bodyPartSelected(index: number){
-console.log("got a click");
-if(!this.hideGuide){
-  this.hideGuide=true;
-  this.hideFbxExport=true;
-  this.selectedImage1.file = '';
-  console.log("Should be triggered once");
-}else{
- console.log("Should be triggered everytime");
-}
-    try{
-      this.selectedBodyPart = Object.assign({}, this.bodyParts.files[index]);
-      this.selectedImage3 = Object.assign({}, this.selectedBodyPart);
-      this.input2Image = Object.assign({}, this.selectedImage3);
-      if (this.selectedImage1.file === "" && this.selectedImage2.file !== "") {
-        this.input1Image = Object.assign({}, this.selectedImage2);
-      }
-      if (this.selectedImage1.file !== "" && this.selectedImage2.file !== "") {
-        this.selectedImage2.file = "";
+    try {
+      if (pos === "G" && this.processedFiles.files[index] !== '') { 
+        this.selectedImage1 = Object.assign({}, this.processedFiles.files[index]);
+        this.input1Image = Object.assign({}, this.selectedImage1);
+        if (this.selectedImage3.file === "" && this.selectedImage2.file !== "") {
+          this.input2Image = Object.assign({}, this.selectedImage2);
+        }
+        if (this.selectedImage3.file !== "" && this.selectedImage2.file !== "") {
+          this.selectedImage2.file = "";
+        }
+      } else {
+        if (pos === "M" && this.mergedFiles.files[index] !== '') { 
+          this.selectedImage2 = Object.assign({}, this.mergedFiles.files[index]);
+         // this.selectedImage1 = Object.assign({}, this.mergedFiles.files[index]);
+          // this.input1Image = Object.assign({}, this.selectedImage2);
+        }
       }
     } catch(ex) {
-      //Missing Error Handling
+
+      //Error Handling to be implemented.
+
     }
+
+  }
+
+  //Image selection for repository images 
+  repositorySelected(index: number){
+    console.log("got a click");
+    if(!this.hideGuide){
+      this.hideGuide=true;
+      this.hideFbxExport=true;
+      this.selectedImage1.file = '';
+      console.log("Should be triggered once");
+    }else{
+    console.log("Should be triggered everytime");
+    }
+        try{
+          this.selectedBodyPart = Object.assign({}, this.bodyParts.files[index]);
+          this.selectedImage3 = Object.assign({}, this.selectedBodyPart);
+          this.input2Image = Object.assign({}, this.selectedImage3);
+          if (this.selectedImage1.file === "" && this.selectedImage2.file !== "") {
+            this.input1Image = Object.assign({}, this.selectedImage2);
+          }
+          if (this.selectedImage1.file !== "" && this.selectedImage2.file !== "") {
+            this.selectedImage2.file = "";
+          }
+        } catch(ex) {
+          //Missing Error Handling
+        }
 
   }
 
