@@ -209,12 +209,25 @@ let options = new RequestOptions({ headers: headers });
 
 let body = urlSearchParams.toString()
 // http://23.251.152.144/SniperBuilder/Builds/new?userId=ashish@gmail.com   https://requestb.in/1iqq9j11
-    this.http.post('https://requestb.in/1iqq9j11',body,options)
+/*
+    this.http.post('http://23.251.152.144/SniperBuilder/api/builds/new?userId=ashish@gmail.com',body,options)
     .subscribe((result) => {
       console.log(result, 'Result reached')
     }, (err) => {
       console.log(err, 'Error reached');
     });
+    */
+    $.post("http://23.251.152.144/SniperBuilder/api/builds/new?userId=ashish@gmail.com", body, function(data) {
+      if (data === 'ok') {
+        console.log("Thank You for contacting us!. We will get back to you soon."); 
+        // this.contactSuccessModal.show(); 
+      }
+      else {
+        console.log("POST not OK")
+      }
+  });
+
+
   }
   generateGuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
