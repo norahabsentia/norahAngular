@@ -38,7 +38,7 @@ export class AppComponent implements AfterViewInit {
                   initializePiwik.init(url,1);
               } else {
                 console.log("You are NOT at Norah.ai");
-                const url = `//35.185.180.253/`;     
+                const url = `//35.197.139.9/`;     
                   initializePiwik.init(url,2);
               }
 
