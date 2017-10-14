@@ -35,6 +35,7 @@ import { Blog3Component } from './pages/blog3/blog3.component';
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { SwiperModule, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Angular2PiwikModule } from 'angular2piwik';
+import { StarRatingModule } from 'angular-star-rating';
 
 const SWIPER_CONFIG: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -82,7 +83,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ReactiveFormsModule,
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
     SwiperModule.forRoot(SWIPER_CONFIG),
-    Angular2PiwikModule
+    Angular2PiwikModule,
+    StarRatingModule.forRoot()
   ],
   providers: [
     { provide: GlobalRef, useClass: BrowserGlobalRef },

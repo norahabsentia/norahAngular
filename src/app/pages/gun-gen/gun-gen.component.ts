@@ -239,6 +239,11 @@ export class GunGenComponent implements AfterViewInit {
       });
   }
 
+  onRatingChange(terrain: any,event) {
+    console.log("11"+JSON.stringify(event));
+
+  }
+
   /* Add terrain to db */
   addToLibrary(terrain: any) {
     //console.log('terrain',terrain, terrain.url.match(/%2F(.+)\?/)[1].split('%2F')[1]);

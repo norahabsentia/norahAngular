@@ -122,6 +122,7 @@
                         <div class="an-display-flex overflow-scroll">
                             <div class="an-main-img" *ngIf="selectedGenImage.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedGenImage.file === '' && selectedRepoImage.file === '') }">
                                 <img id="dnaCode_main_img" [src]="selectedGenImage.file">
+                                 <star-rating-comp *ngIf="hideFbxExport" [starType]="'svg'" [rating]="3" [showHalfStars]="true" (onRatingChange)="onRatingChange(selectedRepoImage,$event)"></star-rating-comp>
 
                                 <div class="an-btn-below-img clearfix">
                                     <!-- <a href="javascript:void(0)" class="addgame-btn" (click)="exportFbx(true)"> Add to game </a> -->
@@ -130,6 +131,7 @@
                             </div>
                             <div class="an-main-img" *ngIf="selectedMergedImage.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedGenImage.file === '' && selectedRepoImage.file === '') }">
                                 <img id="dnaCode_main_img" [src]="selectedMergedImage.file">
+                                <star-rating-comp [starType]="'svg'" [rating]="4" [showHalfStars]="true" (onRatingChange)="onRatingChange(selectedMergedImage,$event)"></star-rating-comp>
 
                                 <div class="an-btn-below-img clearfix">
                                     <!-- <a href="javascript:void(0)" class="addgame-btn" (click)="exportFbx(true)"> Add to game </a> -->
@@ -138,6 +140,7 @@
                             </div>
                             <div class="an-main-img" *ngIf="selectedRepoImage.file !== ''" [ngClass]="{'an-main-img-strecher': (mergedFiles.id !== '' && selectedGenImage.file === '' && selectedRepoImage.file === '') }">
                                 <img id="dnaCode_main_img" [src]="selectedRepoImage.file">
+                                 <star-rating-comp [starType]="'svg'" [rating]="2.5" [showHalfStars]="true" (onRatingChange)="onRatingChange(selectedRepoImage,$event)"></star-rating-comp>
 
                                 <div class="an-btn-below-img clearfix">
                                     <!-- <a href="javascript:void(0)" class="addgame-btn" (click)="exportFbx(true)"> Add to game </a> -->

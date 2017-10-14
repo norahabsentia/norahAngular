@@ -426,6 +426,11 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     });
   }
 
+  onRatingChange(animation: any,event) {
+    console.log("11"+JSON.stringify(event));
+
+  }
+
   generateImage() {
 
     if(this.processedFiles.id !== "" && this.selectedBodyPart) {
