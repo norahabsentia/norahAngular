@@ -5,7 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { GunGenComponent } from './gun-gen.component';
 import { GunInterpService } from './gun-gen.service';
 import { HeightMapSocketService } from './HeightMapSocketService';
-import {GunGenImgDirective } from './gun-gen-img.directive'
+import {GunGenImgDirective } from './gun-gen-img.directive';
+import { StarRatingModule } from 'angular-star-rating';
 
 const routes: Routes = [
   {path: '', component: GunGenComponent}
@@ -14,7 +15,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    StarRatingModule.forRoot()
   ],
   declarations: [
     GunGenComponent,GunGenImgDirective

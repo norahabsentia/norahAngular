@@ -144,6 +144,11 @@ export class RepositoryComponent implements OnInit, AfterViewInit {
     return a.length === array.length;
   }
 
+  onRatingChange(animation: any,event) {
+    console.log("11"+JSON.stringify(event));
+
+  }
+
   addVideo(animation) {
     const wnd = this.global.nativeGlobal;
     const toastr = wnd.toastr;

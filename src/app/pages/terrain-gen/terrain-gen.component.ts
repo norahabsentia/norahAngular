@@ -169,6 +169,11 @@ export class TerrainGenComponent implements AfterViewInit {
       });
   }
 
+  onRatingChange(terrain: any,event) {
+    console.log("11"+JSON.stringify(event));
+
+  }
+
   /* Add terrain to db */
   addToLibrary(terrain: any) {
     //console.log(terrain);

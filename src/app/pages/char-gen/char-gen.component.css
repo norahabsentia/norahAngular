@@ -257,13 +257,14 @@ position: absolute;
 }
 .an-main-img{
 	flex: 1;
-	height: 90%;
+	height: 80%;
 	max-width: 100%;
 	/* This needs to dynamically change when the panel comes below */
 }
 .an-main-img-strecher{
 	/*The div where main-img is present*/
-	height: calc( 100vh - 390px);
+	/*height: calc( 100vh - 390px);*/
+	height: calc( 100vh - 420px);
 }
 .an-main-img > img {
 	max-height: 100%;

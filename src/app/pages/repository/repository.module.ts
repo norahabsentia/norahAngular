@@ -6,6 +6,7 @@ import { environment } from 'environments/environment';
 import { initializeApp } from 'firebase/app';
 import { RepositoryComponent } from './repository.component';
 import { RepositoryService } from './repository.service';
+import { StarRatingModule } from 'angular-star-rating';
 
 initializeApp(environment.firebase);
 
@@ -17,6 +18,7 @@ initializeApp(environment.firebase);
       path: '',
       component: RepositoryComponent
     }]),
+    StarRatingModule.forRoot()
 
   ],
   providers: [RepositoryService],

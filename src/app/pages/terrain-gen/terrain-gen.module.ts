@@ -6,7 +6,7 @@ import { TerrainGenComponent } from './terrain-gen.component';
 import { TerrainGenService } from './terrain-gen.service';
 import { HttpModule } from '@angular/http';
 import { HeightMapSocketService } from './HeightMapSocketService';
-
+import { StarRatingModule } from 'angular-star-rating';
 
 const routes: Routes = [
   {path: '', component: TerrainGenComponent}
@@ -16,7 +16,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     HttpModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    StarRatingModule.forRoot()
   ],
   declarations: [
     TerrainGenComponent,
