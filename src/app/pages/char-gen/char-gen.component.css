@@ -555,4 +555,25 @@ position: absolute;
 .shuffle-btn{
 	cursor: pointer;
 }
-
+.like, .dislike{
+      border: 1px solid rgba(255, 255, 255, .2);
+      background:transparent;
+    }
+    .like.active {
+      background: #204d74
+    }
+    .dislike.active {
+      background: #ac2925
+    }
+button.btn:hover {
+  //background: rgba(255, 255, 255, .2);
+  opacity: 0.5;
+}
+.rating {
+   display:flex;
+   position: absolute;
+   justify-content:center;
+   bottom: 160px;
+   width:100%;
+   text-align:center;
+}

@@ -136,11 +136,11 @@ export class GunGenComponent implements AfterViewInit {
     console.log("GFetting guns " + type);
     this.gunGenService.getGuns(type)
       .then(data => {
-        console.log('DATAAAAA');
+        console.log('DATAAAAA11');
         console.log(data);
         this.guns=[];
         data.map(res => {
-          this.guns.splice(this.guns.length,-1,{isSelect:false, url:res})
+          this.guns.splice(this.guns.length,-1,{isSelect:false, url:res.url, rating:res.rating})
         })
         // this.guns = data;
       })
@@ -164,6 +164,7 @@ export class GunGenComponent implements AfterViewInit {
   nextTerGan() {
     console.log("getting library");
     console.log(this.gunGenService.user);
+    var a = this;
     this.gunGenService.getGunsFromLibrary('mountains')
       .subscribe(items => {
         const itemsArr = [];
@@ -175,7 +176,10 @@ export class GunGenComponent implements AfterViewInit {
             .getDownloadURL()
             .then(data => {
               item["imgsrc"] = data;
-              //console.log(item);
+              this.gunGenService.getGunRating(item.name,item.type).then(function (snapshot) {
+                var rating = a.gunGenService.calculateRating(snapshot);
+                item["rating"] = rating;
+             });
               return item;
             }).catch(e => console.log(e))
           );
@@ -240,7 +244,55 @@ export class GunGenComponent implements AfterViewInit {
   }
 
   onRatingChange(terrain: any,event) {
-    console.log("11"+JSON.stringify(event));
+     var url = terrain.url||terrain.src;
+     var category = terrain.type||this.activeLink;
+     if(terrain.rating != event.rating && url){
+       const terrainName = url.match(/%2F(.+)\?/)[1].split('%2F')[1];
+       this.gunGenService.addRating(terrainName,category,event.rating);
+       console.log("11"+JSON.stringify(event) + "::");
+       terrain.rating = event.rating;
+     }
+     
+
+  }
+
+  incrementUp(terrain: any,$event){
+    //$scope.isActive = !$scope.isActive;
+    let clickedElement = $event.currentTarget||$event.srcElement;
+    clickedElement.classList.toggle("active");
+console.log("UP"+clickedElement);
+    let isCertainButtonAlreadyActive = clickedElement.parentElement.querySelector(".dislike");
+    isCertainButtonAlreadyActive.classList.remove("active");
+    console.log("UPP");
+
+    if(clickedElement.classList.contains("active")){
+        this.gunGenService.addVoting("likes",0);
+    } else {
+        this.gunGenService.addVoting("likes",1);
+  
+    }
+
+
+  }
+  
+  decrementDown(terrain: any,$event){
+    let clickedElement = $event.currentTarget||$event.srcElement;
+
+    clickedElement.classList.toggle("active");
+console.log("DONW"+clickedElement);
+
+    let isCertainButtonAlreadyActive = clickedElement.parentElement.querySelector(".like");
+    isCertainButtonAlreadyActive.classList.remove("active");
+
+    console.log("Down");
+
+    if(clickedElement.classList.contains("active")){
+        this.gunGenService.addVoting("dislikes",0);
+
+    } else {
+        this.gunGenService.addVoting("dislikes",1);
+
+    } 
 
   }
 

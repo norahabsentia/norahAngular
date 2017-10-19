@@ -41,6 +41,7 @@ export class TerrainGenComponent implements AfterViewInit {
               private global: GlobalRef,
               private http: Http) {
                 usePiwikTracker.trackPageView();
+    var a = this;
     this.terrainService.getTerrainsFromLibrary(this.activeLink)
       .subscribe((items) => {
         const anims = items.map(file => {
@@ -51,12 +52,22 @@ export class TerrainGenComponent implements AfterViewInit {
             .child(`${file.name}`)
             .getDownloadURL()
             .then((url) => {
-              return {
-                url: url,
-                key: file.$key,
-                selected: false
-              };
+              var item = {};
+              
+                item["url"] = url;
+                item["key"] = file.$key;
+                item["selected"] = false;
+                item["name"] = file.name;
+                item["type"]= file.type;
+                this.terrainService.getTerrainRating(file.name,file.type).then(function (snapshot) {
+                  var rating = a.terrainService.calculateRating(snapshot);
+                  item["rating"] = rating;
+                });
+              return item;
+              //};
             });
+
+
         });
         Promise.all(anims).then((terrains) => {
           console.log(terrains);
@@ -170,7 +181,59 @@ export class TerrainGenComponent implements AfterViewInit {
   }
 
   onRatingChange(terrain: any,event) {
-    console.log("11"+JSON.stringify(event));
+     var url = terrain.name;
+     console.log(url);
+     var category = terrain.type||this.activeLink;
+     if(terrain.rating != event.rating && url){
+       //const terrainName = url.split(category)[1];
+       const terrainName = url.split('/').pop();
+       console.log(terrainName+category);
+       this.terrainService.addRating(terrainName,category,event.rating);
+       console.log("11"+JSON.stringify(event) + "::");
+       terrain.rating = event.rating;
+     }
+
+
+  }
+
+
+  incrementUp(terrain: any,$event){
+    //$scope.isActive = !$scope.isActive;
+    let clickedElement = $event.currentTarget||$event.srcElement;
+    clickedElement.classList.toggle("active");
+console.log("UP"+clickedElement);
+    let isCertainButtonAlreadyActive = clickedElement.parentElement.querySelector(".dislike");
+    isCertainButtonAlreadyActive.classList.remove("active");
+    console.log("UPP");
+
+    if(clickedElement.classList.contains("active")){
+        this.terrainService.addVoting("likes",0);
+    } else {
+        this.terrainService.addVoting("likes",1);
+
+    }
+
+
+  }
+
+  decrementDown(terrain: any,$event){
+    let clickedElement = $event.currentTarget||$event.srcElement;
+
+    clickedElement.classList.toggle("active");
+console.log("DONW"+clickedElement);
+
+    let isCertainButtonAlreadyActive = clickedElement.parentElement.querySelector(".like");
+    isCertainButtonAlreadyActive.classList.remove("active");
+
+    console.log("Down");
+
+    if(clickedElement.classList.contains("active")){
+        this.terrainService.addVoting("dislikes",0);
+
+    } else {
+        this.terrainService.addVoting("dislikes",1);
+
+    }
 
   }
 
@@ -326,12 +389,30 @@ export class TerrainGenComponent implements AfterViewInit {
     // this.generationButton();
   }
   getTerrains(type: string) {
+    var a = this;
+        const dataArr = []
     this.terrains = this.terrainService.getTerrains(type)
       .map(data => {
+
+        //const res = data.json().items.slice();
         const res = data.json().items.slice();
         res.shift();
+        res.forEach((item) => {
+          item.rating = "5";
+          var type = this.activeLink;
+          var name = item.name.split(`${this.activeLink}/`)[1];
+console.log(type+name);
+          dataArr.push(this.terrainService.getTerrainRating(name,type).then(function (snapshot) {
+                var rating = a.terrainService.calculateRating(snapshot);
+                item.rating = rating;
+              console.log("rating"+name +" "+rating);
+          }));
+        });
+        //Promise.all(dataArr).then(data=>data);
+        console.log("11"+res.length);
         return res;
       });
+
   }
 
   // openImage(src) {

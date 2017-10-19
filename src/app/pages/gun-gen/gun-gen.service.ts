@@ -52,16 +52,38 @@ export class GunInterpService {
   /* Get data from Firebase Storage */
   getGuns(type: string) {
     const terrainsArr = [];
+    const terrainsCombArr = [];
+    const db = this.db;
+    var getRatingRef;
+    var a = this;
+
     this.terrainsArr.forEach(item => {
+
       terrainsArr.push(firebase
         .storage(this.firebaseApp)
         .ref('gunImages')
         .child(type)
         .child(`gun${item}.png`)
         .getDownloadURL()
-        .then(data => data)
+        //.then(data => data)
+        .then(function(data){
+            return firebase.database()
+              .ref('ratings')
+              .child('gunGen')
+              .child(type)
+              .child(`gun${item}`)
+              .once('value')
+              .then(function (snapshot) {
+                console.log("GUN"+item);
+                var rating = a.calculateRating(snapshot)
+                var obj = {url : data,rating:rating};
+                return obj;
+             })            
+        })
       );
+
     });
+
     return Promise.all(terrainsArr)
       .then(data => data);
   }
@@ -76,6 +98,126 @@ export class GunInterpService {
       console.log('SHIT HAPPENED');
       return Observable.of([]);
     }
+  }
+
+  getGunRating(image,type){
+    var name = image.split(".",1);
+    return firebase.database()
+              .ref('ratings')
+              .child('gunGen')
+              .child(type)
+              .child(`${name}`)
+              .once('value')
+  }
+
+
+  calculateRating(snapshot){
+    var rating = 5;
+    if(snapshot.val()){
+      var stars = 0;
+      var users = 0;
+      snapshot.forEach(function(messageSnapshot) {
+        if(["1","2","3","4","5"].includes(messageSnapshot.key)){
+          stars = stars + (messageSnapshot.key * messageSnapshot.val());
+          users = users + messageSnapshot.val();
+        }
+      });
+      console.log("starts"+stars);
+      console.log("users"+users);
+      if( users != 0){
+          rating = stars/users;
+      }
+      if(rating == 0)
+        rating = 5;
+    }
+    return rating;
+
+  }
+
+
+  addRating(image, category,rating) {
+    var name = image.split(".",1);
+    firebase.database()
+              .ref('ratings')
+              .child('gunGen')
+              .child(category)
+              .child(`${name}`)
+              .once('value')
+              .then(function (snapshot) {
+                var users = 0;
+                if(snapshot.val()){
+                  snapshot.forEach(function(messageSnapshot) {
+                    //stars = stars + (messageSnapshot.key * messageSnapshot.val());
+                    //users = users + messageSnapshot.val();
+                    console.log(messageSnapshot.val());
+                    if(messageSnapshot.key == rating){
+                      users = messageSnapshot.val();
+                    }
+                  });
+                } 
+                users = users + 1;
+                const dummyObj = {[rating]:users};
+                firebase.database()
+                 .ref('ratings')
+                 .child('gunGen')
+                 .child(category)
+                 .child(`${name}`)
+                 .update({[rating]:users}).then((item) => { console.log("UPDATED"); });
+                 /*});*/
+
+
+     });
+
+     /* const dummyObj = {
+      1: "1",
+      2: "2",
+      3: "3",
+      4: "4",
+      5: "5"
+    };
+ firebase.database()
+        .ref('ratings')
+        .child('gunGen')
+        .child(category)
+        .child(name.split(".",1))
+        .push(dummyObj).then((item) => { console.log(item.key); });
+});*/
+
+  }
+
+
+  addVoting(type,decrement){
+
+      firebase.database()
+              .ref('votings')
+              .child('gunGen')
+              .once('value')
+              .then(function (snapshot) {
+                var votes = 0;
+                if(snapshot.val()){
+                  snapshot.forEach(function(messageSnapshot) {
+                    console.log(messageSnapshot.val());
+                    if(messageSnapshot.key == type){
+                      votes = messageSnapshot.val();
+                    }
+                  });
+                } 
+                if(decrement){
+                  votes = votes - 1;
+                  if(votes<0)
+                   votes = 0;
+                } else {
+                  votes = votes + 1;
+                }
+                const dummyObj = {[type]:votes};
+                console.log("Votes"+votes);
+                firebase.database()
+                 .ref('votings')
+                 .child('gunGen')
+                 .update({[type]:votes}).then((item) => { console.log("UPDATED"); });
+
+   });
+
   }
 
   /* Add data to Firebase db */

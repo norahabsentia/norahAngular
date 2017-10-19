@@ -55,4 +55,84 @@ export class RepositoryService {
     this.tagStore.splice(this.tagStore.indexOf(tag), 1);
     this.unselectedTags.next(tag);
   }
+
+  getRepoRating(image){
+    var name = image.split(".",1);
+    return firebase.database()
+              .ref('ratings')
+              .child('repoGen')
+              .child(`${name}`)
+              .once('value')
+  }
+
+  calculateRating(snapshot){
+    var rating = 5;
+    if(snapshot.val()){
+      var stars = 0;
+      var users = 0;
+      snapshot.forEach(function(messageSnapshot) {
+        if(["1","2","3","4","5"].includes(messageSnapshot.key)){
+          stars = stars + (messageSnapshot.key * messageSnapshot.val());
+          users = users + messageSnapshot.val();
+        }
+      });
+      console.log("starts"+stars);
+      console.log("users"+users);
+      if( users != 0){
+          rating = stars/users;
+      }
+      if(rating == 0)
+        rating = 5;
+    }
+    return rating;
+  }
+
+  addRating(image, rating) {
+    var name = image.split(".",1);
+    firebase.database()
+              .ref('ratings')
+              .child('repoGen')
+              .child(`${name}`)
+              .once('value')
+              .then(function (snapshot) {
+                var users = 0;
+                if(snapshot.val()){
+                  snapshot.forEach(function(messageSnapshot) {
+                    //stars = stars + (messageSnapshot.key * messageSnapshot.val());
+                    //users = users + messageSnapshot.val();
+                    console.log(messageSnapshot.val());
+                    if(messageSnapshot.key == rating){
+                      users = messageSnapshot.val();
+                    }
+                  });
+                }
+                users = users + 1;
+                const dummyObj = {[rating]:users};
+                firebase.database()
+                 .ref('ratings')
+                 .child('repoGen')
+                 .child(`${name}`)
+                 .update({[rating]:users}).then((item) => { console.log("UPDATED"); });
+                 /*});*/
+
+
+     });
+
+     /* const dummyObj = {
+      1: "1",
+      2: "2",
+      3: "3",
+      4: "4",
+      5: "5"
+    };
+ firebase.database()
+        .ref('ratings')
+        .child('gunGen')
+        .child(category)
+        .child(name.split(".",1))
+        .push(dummyObj).then((item) => { console.log(item.key); });
+});*/
+
+  }
+
 }

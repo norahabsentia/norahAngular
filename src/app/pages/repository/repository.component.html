@@ -50,7 +50,7 @@
                                                               aria-hidden="true"></i></a>
           <a href="{{animation.animUrl}}" class="download-anim"><i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
           <div class="animation-name">{{animation.displayName}}</div>
-          <star-rating-comp [starType]="'svg'" [rating]="2.5" [showHalfStars]="true" (onRatingChange)="onRatingChange(animation,$event)" style="position:absolute;bottom:45px;display:block"></star-rating-comp>
+          <star-rating-comp [starType]="'svg'" [rating]="animation.rating" [showHalfStars]="true" (onRatingChange)="onRatingChange(animation,$event)" style="position:absolute;bottom:45px;display:block"></star-rating-comp>
         </div>
         <video autoplay loop muted src="{{animation.mp4Url}}">
 
