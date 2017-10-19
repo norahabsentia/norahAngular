@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserGlobalRef, GlobalRef } from './global-ref';
 import { AboutComponent } from './pages/about/about.component';
+import { AutoRegComponent } from './pages/autoReg/autoReg.component';
 import { AuthModule } from './pages/auth/auth.module';
 import { DialogService } from './pages/auth/dialog/dialog.component';
 import { CharMakerComponent } from './pages/char-maker/char-maker.component';
@@ -54,6 +55,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     AboutComponent,
+    AutoRegComponent,
     ExportGameComponent,
     CharMakerComponent,
     CharGenComponent,
