@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AuthGuard } from './pages/auth/auth-guard.service';
+import { AutoRegComponent } from './pages/autoReg/autoReg.component';
 import { ExportGameComponent } from './pages/export-game/export-game.component';
 import { CharMakerComponent } from './pages/char-maker/char-maker.component';
 import { CharGenComponent } from './pages/char-gen/char-gen.component'; 
@@ -25,6 +26,10 @@ const appRoutes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'autoReg',
+    component: AutoRegComponent
   },
   {
     path: 'tutorials',
