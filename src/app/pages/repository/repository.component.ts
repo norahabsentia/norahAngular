@@ -42,8 +42,18 @@ export class RepositoryComponent implements OnInit, AfterViewInit {
     this.animations = arr;
     this.displayAnimations = arr;
     this.selectedTags = [];
+    var a = this;
     this.repService.animations
       .subscribe((result: Animation[]) => {
+         result.map(item => {
+           console.log("NaME"+item.name);
+           this.repService.getRepoRating(item.name).then(function (snapshot) {
+                var rating = a.repService.calculateRating(snapshot);
+                item.rating = rating;
+             });
+           return item;
+         });
+
       result = result.sort((a, b) => {
         return a.displayName.localeCompare(b.displayName);
       });
@@ -144,8 +154,15 @@ export class RepositoryComponent implements OnInit, AfterViewInit {
     return a.length === array.length;
   }
 
-  onRatingChange(animation: any,event) {
-    console.log("11"+JSON.stringify(event));
+  onRatingChange(terrain: any,event) {
+     var url = terrain.name;
+     if(terrain.rating != event.rating && url){
+       const terrainName = url.split('.')[0];
+       this.repService.addRating(terrainName,event.rating);
+       console.log("11"+JSON.stringify(event) + "::");
+       terrain.rating = event.rating;
+     }
+
 
   }
 
@@ -280,6 +297,7 @@ export interface Animation {
   displayName: string;
   yamlUrl: string;
   tags: Tag[];
+  rating: number;
 }
 
 export interface Tag {

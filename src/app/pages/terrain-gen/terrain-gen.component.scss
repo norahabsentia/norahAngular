@@ -129,6 +129,16 @@ div.rotate {
         padding: 5px;
       }
     }
+    .like, .dislike{
+      border:0px
+    }
+    .like.active {
+      background: #204d74
+    }
+    .dislike.active {
+      background: #ac2925
+    }
+
     button {
       overflow: hidden;
       color: #f2eef4;

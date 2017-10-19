@@ -46,7 +46,7 @@
                       </div>
                       <div class="item-row action-btn">
                         <button (click)="addToLibrary(terrain)">Add to library</button>
-                        <star-rating-comp [starType]="'svg'" [rating]="2.5" [showHalfStars]="true" (onRatingChange)="onRatingChange(terrain,$event)"></star-rating-comp>
+                        <star-rating-comp [starType]="'svg'" [rating]="terrain.rating" [showHalfStars]="true" (onRatingChange)="onRatingChange(terrain,$event)"></star-rating-comp>
                         <!-- <button (click)="addToGame(terrain)">Add to game</button> -->
                       </div>
                     </div>
@@ -98,7 +98,7 @@
                             </div>
                             <div class="item-row action-btn" onclick="return false;">
                               <button (click)="deleteFromLibrary(ter)">Delete</button>
-                               <star-rating-comp [starType]="'svg'" [rating]="2.5" [showHalfStars]="true" (onRatingChange)="onRatingChange(ter,$event)"></star-rating-comp>
+                               <star-rating-comp [starType]="'svg'" [rating]="ter.rating" [showHalfStars]="true" (onRatingChange)="onRatingChange(ter,$event)"></star-rating-comp>
                             </div>
                           </div>
                         </label>
