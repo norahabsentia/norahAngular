@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json", 
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
     "name": "norah"
   },
@@ -20,7 +20,9 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "assets/css/toastr.css"
+        "assets/css/toastr.css",
+        "../node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css",
+        "../node_modules/swiper/dist/css/swiper.min.css"
       ],
       "scripts": [
         "assets/libs/jquery.js",
