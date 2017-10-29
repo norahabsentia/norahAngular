@@ -21,8 +21,8 @@
       "styles": [
         "styles.scss",
         "assets/css/toastr.css",
-        "../node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css",
-        "../node_modules/swiper/dist/css/swiper.min.css"
+        "assets/css/swiper.min.css",
+        "assets/css/perfect-scrollbar.min.css"
       ],
       "scripts": [
         "assets/libs/jquery.js",
