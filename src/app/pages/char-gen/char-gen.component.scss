@@ -1,5 +1,3 @@
-@import '~perfect-scrollbar/dist/css/perfect-scrollbar.min.css';
-@import 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.min.css';
 .collapse {
 	display: none
 }
@@ -178,7 +176,7 @@ height:100px;
 
 .head-detail-block-scroll-container{
 overflow:hidden;
-position: absolute; 
+position: absolute;
 }
 
 .scroller-content{
@@ -203,7 +201,7 @@ position: absolute;
     padding-top: 0 !important;
     position: relative !important;
     z-index: unset !important;
-    height: unset !important; 
+    height: unset !important;
 }
 .an-RSidebar .scroller-content{
 	width: auto !important;
@@ -227,7 +225,7 @@ position: absolute;
 .an-head-details-scrollable{
 	overflow-y: scroll;
 	overflow-x: hidden;
-	height: calc( 100vh - 330px); 
+	height: calc( 100vh - 330px);
 }
 .an-head-details-scrollable .head-title{
 	position: absolute;
@@ -240,10 +238,10 @@ position: absolute;
 .vertical-scroll-padding{
 	padding: 10px 0 30px 0;
 }
-.an-head-details-vertical .block_img{ 
+.an-head-details-vertical .block_img{
 	height: 100% !important;
 	width: auto !important;
-	max-width: unset !important; 
+	max-width: unset !important;
 }
 .an-horizonatal-scrollbar .block_img{
 	height: 153px;
@@ -315,7 +313,7 @@ position: absolute;
 
 	padding-left: 21%;
 	width:102%;
-	
+
 }
 .flex-1{
 	flex: 1;
@@ -336,7 +334,7 @@ position: absolute;
 
 }
 .an-head-details-horizontal .head-detail-block{
-	overflow-y: hidden; 
+	overflow-y: hidden;
 	height: 160px;
 }
 .an-head-details-horizontal .head-detail{
@@ -367,7 +365,7 @@ position: absolute;
 }
 
 :host /deep/.ps__scrollbar-y-rail{
-	
+
 }
 .horizontal-details .head-detail .an-ham-button-div{
 	float: right;
