@@ -51,7 +51,7 @@ export class StyleTransferComponent implements AfterViewInit {
       event.stopPropagation();
       event.stopImmediatePropagation();
       event.cancelBubble = true;
-      window.removeEventListener('keypress');
+      //window.removeEventListener('keypress');
     });
     $(window).off('keypress');
     const yamlUrls = ['http://s3-ap-southeast-1.amazonaws.com/norah.absentia/yaml/aggressive+look.anim', 'http://s3-ap-southeast-1.amazonaws.com/norah.absentia/yaml/backflip.anim', 'http://s3-ap-southeast-1.amazonaws.com/norah.absentia/yaml/block.anim', 'http://s3-ap-southeast-1.amazonaws.com/norah.absentia/yaml/casual+conversation.anim', 'http://s3-ap-southeast-1.amazonaws.com/norah.absentia/yaml/chicken+dance.anim', 'http://s3-ap-southeast-1.amazonaws.com/norah.absentia/yaml/dancing.anim'];
