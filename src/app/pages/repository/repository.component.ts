@@ -161,31 +161,32 @@ export class RepositoryComponent implements OnInit, AfterViewInit {
       console.log('UID' + userId);
       firebase.database().ref('usernames').child(userId).child('mylibrary').once('value', function (snap) {
         const libraryItems = snap.val();
-        let exists = false;
-        console.log(libraryItems);
+        if (libraryItems!= null){
         Object.keys(libraryItems).forEach(function (itemKey) {
           exists = libraryItems[itemKey]['name'] === animName;
         });
-        if ( !exists ) {
-          const newObjRef = firebase.database().ref('usernames').child(userId).child('mylibrary/').push();
+      }
+        let exists = false;
+    if ( !exists ) {
+      const newObjRef = firebase.database().ref('usernames').child(userId).child('mylibrary/').push();
 
-          const storageBucket = (firebase.app().options as any).storageBucket;
-          const animMp4Name = `mp4Files/${animName}.mp4`;
-          const mp4Url = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/${encodeURIComponent(animMp4Name)}?alt=media`;
+      const storageBucket = (firebase.app().options as any).storageBucket;
+      const animMp4Name = `mp4Files/${animName}.mp4`;
+      const mp4Url = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/${encodeURIComponent(animMp4Name)}?alt=media`;
 
-          const animFileName = 'animFiles/' + animName + '.anim';
-          const animFileUrl = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/
-            ${encodeURIComponent(animFileName)}?alt=media`;
+      const animFileName = 'animFiles/' + animName + '.anim';
+      const animFileUrl = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/
+        ${encodeURIComponent(animFileName)}?alt=media`;
 
-          newObjRef.set({
-            displayName: displayName,
-            name: animName,
-            duration: duration
-          });
-          toastr.info('Added to your library');
-        } else {
-          toastr.error('Already in your library');
-        }
+      newObjRef.set({
+        displayName: displayName,
+        name: animName,
+        duration: duration
+      });
+      toastr.info('Added to your library');
+    } else {
+      toastr.error('Already in your library');
+    }
       });
     }
     $('.download-anim').click(function () {
@@ -196,6 +197,7 @@ export class RepositoryComponent implements OnInit, AfterViewInit {
       });
     });
   }
+ 
 
   matchTags() {
     const arrayLength = this.selectedTags.length;
