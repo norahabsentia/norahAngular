@@ -301,6 +301,8 @@ console.log("GUN JSONS DOWNLOADING");
                     
                             });
                             
+                            
+
             return Promise.all([file1,file2]);
           
 

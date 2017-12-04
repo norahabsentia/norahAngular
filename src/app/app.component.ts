@@ -5,6 +5,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AuthService } from './pages/auth/auth.service';
 import { LibraryService } from './pages/library/library.service';
 import { RepositoryService } from './pages/repository/repository.service';
+import { SEO_CONFIGURATION } from './seo.config';
+import { SeoService } from './seo.service';
 import { InitializePiwik,ConfigurePiwikTracker, UsePiwikTracker} from 'angular2piwik';
 
 
@@ -27,7 +29,7 @@ export class AppComponent implements AfterViewInit {
 
   constructor(     private configurePiwikTracker: ConfigurePiwikTracker,
     private usePiwikTracker: UsePiwikTracker,private initializePiwik: InitializePiwik,private router: Router, private authService: AuthService,
-              private repService: RepositoryService, private libService: LibraryService) {
+              private repService: RepositoryService, private libService: LibraryService, private seoService: SeoService) {
                  // set your url to whatever should be communicating with Piwik with the correct backslashes
                 
                 if (window.location.href.indexOf("norah.ai") > -1) {
@@ -54,14 +56,22 @@ export class AppComponent implements AfterViewInit {
         this.hideFooter = event.url.indexOf('auto-rigger') !== -1 || event.url.indexOf('motion-editor') !== -1 ||
           event.url.indexOf('style-transfer-tool') !== -1;
       }
-  
+      if ( event instanceof NavigationStart ) {
+        const url = dashCaseToCamelCase(event.url.substring(1));
+        url ? this.setSEO(url) : this.setSEO('home');
+      }
     });
     repService.selectedTags$
       .subscribe((tag: string) => {
         this.tags.push(tag);
       });
   }
- 
+  setSEO(page) {
+    const seoConfig = SEO_CONFIGURATION[page] ? SEO_CONFIGURATION[page].seo : SEO_CONFIGURATION['home'].seo;
+    this.seoService.setTitle(seoConfig.title);
+    this.seoService.setMetaDescription(seoConfig.description);
+    this.seoService.setMetaKeywords(seoConfig.keywords);
+}
   checkLogin(url: string): void {
     if (this.authService.authenticated) {
      

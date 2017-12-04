@@ -25,6 +25,7 @@ import { RepositoryService } from './pages/repository/repository.service';
 import { SniperComponent } from './pages/sniper/sniper.component';
 import { TerrainGenModule } from './pages/terrain-gen/terrain-gen.module';
 import { TerrainGenService } from './pages/terrain-gen/terrain-gen.service';
+import { SeoService } from './seo.service';
 import { GameMakerStartComponent } from './pages/game-maker-start/game-maker-start.component';
 import { TutorialComponent } from './pages/tutorial/tutorial.component';
 import { BlogComponent } from './pages/blog/blog.component';
@@ -91,7 +92,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LibraryService,
     RepositoryService,
     TerrainGenService,
-    GunInterpService
+    GunInterpService,
+    SeoService
   ],
 
   bootstrap: [AppComponent]
