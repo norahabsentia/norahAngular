@@ -2,7 +2,7 @@
     <div class="row">
         <!--header-->
         <header [class]="'clearfix ' + (updateIndex ? 'updateIndex' : '')" class="col-xs-12 clearfix">
-            <nav class="navbar navbar-default navbar-static-top tm_navbar clearfix" role="navigation">
+            <nav class="navbar navbar-default navbar-static-top tm_navbar clearfix" role="navigation" style="background-color:#253443;">
                 <div class="logo"></div>
                 <ul class="nav sf-menu  clearfix">
 
@@ -66,7 +66,10 @@
                     <li>
                         <a [routerLink]="['contact']">Contact Us</a>
                     </li>
-                </ul>
+                
+                      <a> <button type="button" class="btn blue" ><a style="cursor:pointer;text-decoration: none;color:white;" href="https://norah.ai/analytics"><span>NORAH Analytics</span></a></button>   
+                    </a>
+            </ul>
             </nav>
             <template ngbModalContainer></template>
 
@@ -82,7 +85,7 @@
             NORAH
         </div>
         <div class="footerCopyright">
-            © 2017. All Rights Reserved.
+           Copyright © Absentia Virtual Reality 2017. All rights reserved.
         </div>
     </div>
 </footer>

@@ -239,8 +239,114 @@ ul.list-unstyled {
     i {
         padding-right: 19%;
     }
-    &:focus {
-        outline: 0;
-        box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
-    }
+    // &:focus {
+    //     outline: 0;
+    //     box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
+    // }
 }
+
+.btn {
+    // position: relative;
+ 
+    display: block;
+    margin: 13px auto;
+    padding: 0;
+  
+    overflow: hidden;
+  
+    border-width: 0;
+    outline: none;
+    border-radius: 30px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    
+    background-color:blue;
+    color: #ecf0f1;
+    
+    transition: background-color .3s;
+    font-size: $navbar-font;
+    float: right;
+  }
+  
+  .btn:hover, .btn:focus {
+    background-color: #27ae60;
+  }
+  
+  .btn > * {
+    position: relative;
+  }
+  
+  .btn span {
+    display: block;
+    padding: 12px 24px;
+    
+  }
+  
+  .btn:before {
+    content: "";
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    display: block;
+    width: 0;
+    padding-top: 0;
+      
+    border-radius: 100%;
+    
+    
+  }
+  
+  .btn:active:before {
+    width: 120%;
+    padding-top: 120%;
+    
+    transition: width .2s ease-out, padding-top .2s ease-out;
+  }
+  
+  /* Styles, not important */
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+  
+  html {
+    position: relative;
+    height: inherit;
+  }
+  
+  body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
+    background-color: #ecf0f1;
+    color: #34495e;
+    font-family: Trebuchet, Arial, sans-serif;
+    text-align: center;
+  }
+  
+  h2 {
+    font-weight: normal;
+  }
+  
+  .btn.blue {
+    background-color: #078acf;
+  }
+  
+  .btn.blue:hover, .btn.blue:focus {
+    background-color: #046aa0;
+  }
+  
+  .btn.red {
+    background-color: #e74c3c;
+  }
+  
+  .btn.red:hover, .btn.red:focus {
+    background-color: #c0392b;
+  }

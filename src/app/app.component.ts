@@ -9,7 +9,6 @@ import { SEO_CONFIGURATION } from './seo.config';
 import { SeoService } from './seo.service';
 import { InitializePiwik,ConfigurePiwikTracker, UsePiwikTracker} from 'angular2piwik';
 
-
 declare const $: any;
 declare const jQuery: any;
 
