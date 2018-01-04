@@ -27,6 +27,9 @@
                                         <img [src]="terrain.mediaLink" alt="">
                                         <div class="overlay">
                                             <div class="item-row">
+                                                <button style="margin-right:auto">
+                                                  <i class="fa fa-download" aria-hidden="true" (click)="downloadImage(terrain.mediaLink,'test.png')"></i>
+                                                </button>
                                                 <button>
                           <i class="fa fa-play" aria-hidden="true" (click)="openImage(terrain.mediaLink)"></i>
                         </button>
@@ -77,6 +80,9 @@
                                         <img [src]="terrain.url" alt="">
                                         <div class="overlay" (click)="selectImg($event, terrain)">
                                           <div class="item-row">
+                                          <button style="margin-right:auto">
+                                            <i class="fa fa-download" aria-hidden="true" (click)="downloadImage(terrain.url,'test.png')"></i>
+                                          </button>
                                             <button>
                                               <i class="fa fa-play" aria-hidden="true" (click)="openImage(terrain.url)"></i>
                                             </button>
@@ -121,6 +127,9 @@
                                                                     <img [src]="receivedImg" alt="" (error)="errorImage($event)" (load)="imageLoaded($event)"></div>
                                                                 <div class="overlay">
                                                                     <div class="item-row">
+                                          <button style="margin-right:auto">
+                                            <i class="fa fa-download" aria-hidden="true" (click)="downloadImage(receivedImg,'test.png')"></i>
+                                          </button>
                                                                         <button>
                                       <i class="fa fa-play" aria-hidden="true" (click)="openImage(receivedImg)"></i>
                                     </button>

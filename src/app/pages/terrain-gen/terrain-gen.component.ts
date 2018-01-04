@@ -173,6 +173,14 @@ export class TerrainGenComponent implements AfterViewInit {
     console.log("11"+JSON.stringify(event));
 
   }
+  downloadImage(fileURL, fileName) {
+     console.log("Image"+fileName);
+     var save = document.createElement('a');
+     save.href = fileURL;
+     save.target = '_blank';
+     save.download = fileName; 
+     save.click();
+  }
 
   /* Add terrain to db */
   addToLibrary(terrain: any) {
