@@ -245,6 +245,51 @@ console.log(gun)
              }
 
 
+        getGunJsonSingle(gunsArr){
+          var promise = [];
+          gunsArr.forEach(item => {
+            promise.push(this.getGunJsonPromise(item))
+          });
+
+           // var file1 = this.getGunJsonPromise(gun1);
+            return Promise.all(promise);
+
+        }
+
+        getGunJsonPromise(gun1){
+console.log(gun1);
+console.log("GUN JSONS DOWNLOADING");
+
+        let gunType1=gun1.type;
+        let gun1Name:string=gun1.name
+        gun1Name=gun1Name.replace("png","json");
+
+        var file1= new Promise((resolve,reject)=>{ firebase.storage().ref(`/gunJSON/${gunType1}`).child(gun1Name).getDownloadURL().then(url=>{
+
+
+                    // This can be downloaded directly:
+                    var xhr = new XMLHttpRequest();
+                    xhr.responseType = 'text';
+                    xhr.onload = function(event) {
+                      var blob = xhr.response;
+                      resolve(JSON.parse(blob));
+                    };
+                    xhr.open('GET', url);
+                      xhr.send();
+                  }).catch((err)=>{
+
+                    console.log("Failed to load json");
+                    reject(err);
+                  });
+
+
+                  });
+            return file1;
+        }
+
+
+
+
        getGunJson(gun1,gun2){
 console.log(gun1);
 console.log(gun2);

@@ -43,6 +43,10 @@
                         <!--<button>-->
                           <!--<i class="fa fa-play" aria-hidden="true" (click)="openImage(terrain.url)"></i>-->
                         <!--</button>-->
+                        <button style="margin-right:auto"  (click)="downloadImageFromName(terrain.url)">
+                          <i class="fa fa-download" aria-hidden="true"></i>
+                        </button>
+
                       </div>
                       <div class="item-row action-btn">
                         <button (click)="addToLibrary(terrain)">Add to library</button>
@@ -95,6 +99,9 @@
                               <!--<button>-->
                                 <!--<i class="fa fa-play" aria-hidden="true" (click)="openImage(ter)"></i>-->
                               <!--</button>-->
+                              <button style="margin-right:auto"  (click)="downloadImage($event,ter)">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                              </button>
                             </div>
                             <div class="item-row action-btn" onclick="return false;">
                               <button (click)="deleteFromLibrary(ter)">Delete</button>
@@ -139,6 +146,9 @@
                                     <!-- <button>
                                       <i class="fa fa-play" aria-hidden="true" (click)="openImage(receivedImg.img)"></i>
                                     </button> -->
+                                     <button style="margin-right:auto" (click)="downloadImagesFromJsonObject(receivedImg)">
+                                       <i class="fa fa-download" aria-hidden="true"></i>
+                                     </button>
                                   </div>
                                   <div class="item-row action-btn">
                                     <!-- <button (click)="addToLibraryFromGeneration(receivedImg.img)">Add to library</button> -->

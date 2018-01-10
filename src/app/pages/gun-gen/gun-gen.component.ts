@@ -65,6 +65,16 @@ export class GunGenComponent implements AfterViewInit {
       this.receivedData.push(this.gunFiles);
     });
 
+    this.gSocket.on("downloadzip", (data) => {
+      console.log("DATA"+JSON.stringify(data));
+      var save = document.createElement('a');
+      save.href = data.files;
+      console.log(save.href);
+      save.target = '_blank';
+      save.download = 'download.zip';
+      save.click();
+    });
+
     this.gSocket.on("errorInfo", (data) => {
 
       console.log(data);
@@ -299,7 +309,9 @@ export class GunGenComponent implements AfterViewInit {
 
 
     this.toastr.info("Downloading guns Json")
-    this.gunGenService.getGunJson(this.selectedImgs[0], this.selectedImgs[1]).then(val => {
+    var gunsArr = [this.selectedImgs[0], this.selectedImgs[1]];   
+    this.gunGenService.getGunJsonSingle(gunsArr).then(val => {
+    //this.gunGenService.getGunJson(this.selectedImgs[0], this.selectedImgs[1]).then(val => {
 
       console.log("JSON VALUES DOWNLOAED");
       this.toastr.info("Generating gun Models");
@@ -339,6 +351,54 @@ export class GunGenComponent implements AfterViewInit {
   generateGun(inval, outval) {
     console.log("sending files");
     this.gSocket.emit("upload", { inputValues: inval, outputValues: outval });
+
+  }
+  
+  downloadImageFromName(gunName){
+    var gun = {};
+    const name = gunName.match(/%2F(.+)\?/)[1].split('%2F')[1];
+    const type = gunName.match(/%2F(.+)\?/)[1].split('%2F')[0];
+    console.log("Name"+name);
+    console.log(type);
+    gun['type'] = type ;
+    gun['name'] = name ;
+    this.downloadImage(null,gun);
+
+  }
+
+  downloadImagesFromJsonObject(gunJson){
+    console.log(gunJson);
+
+    this.sendImageJsonForDownloadLink(gunJson.jsonValues);
+
+  } 
+ 
+  downloadImage(event,gun){
+    
+     if(event){
+       event.stopPropagation();
+     }
+ 
+     var gunsArr = [gun];   
+     this.toastr.info("Retrieving Info for Image");
+     this.gunGenService.getGunJsonSingle(gunsArr).then(val => {
+
+      console.log("JSON VALUES DOWNLOAED");
+      console.log(val);
+      this.sendImageJsonForDownloadLink(val[0]);
+    }).catch((err) => {
+      console.log("Failed to download JSONS");
+      this.toastr.error("Failed to download guns Json.")
+
+    })
+
+
+  }
+
+  sendImageJsonForDownloadLink(jsonValue){
+      this.toastr.info("Downloading Image");
+      this.gSocket.emit("downloadLink", { imagejson: jsonValue });
+
 
   }
 
