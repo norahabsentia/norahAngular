@@ -397,6 +397,7 @@ export class GunGenComponent implements AfterViewInit {
 
   sendImageJsonForDownloadLink(jsonValue){
       this.toastr.info("Downloading Image");
+      this.usePiwikTracker.trackEvent('gun-gen', {category : '3dmodellingtool'});
       this.gSocket.emit("downloadLink", { imagejson: jsonValue });
 
 
