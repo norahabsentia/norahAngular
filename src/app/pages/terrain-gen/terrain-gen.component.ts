@@ -178,7 +178,8 @@ export class TerrainGenComponent implements AfterViewInit {
      var save = document.createElement('a');
      save.href = fileURL;
      save.target = '_blank';
-     save.download = fileName; 
+     save.download = fileName;
+     this.usePiwikTracker.trackEvent('terrain-gen', {category : '3dmodellingtool'}); 
      save.click();
   }
 
