@@ -22,7 +22,8 @@
         "styles.scss",
         "assets/css/toastr.css",
         "assets/css/swiper.min.css",
-        "assets/css/perfect-scrollbar.min.css"
+        "assets/css/perfect-scrollbar.min.css",
+        "../node_modules/nouislider/distribute/nouislider.min.css"
       ],
       "scripts": [
         "assets/libs/jquery.js",
