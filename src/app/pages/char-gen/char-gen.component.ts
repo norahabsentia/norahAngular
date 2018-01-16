@@ -800,6 +800,8 @@ export class CharGenComponent implements OnInit,OnChanges,AfterViewInit {
     console.log(inputVal);
     console.log("addtogame" + addToGame);
 
+    this.usePiwikTracker.trackEvent('char-gen', {category : '3dmodellingtool'});
+
     //send via socket
 
     if(addToGame) {
