@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Animation } from './repository.component';
 import * as firebase from 'firebase';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase ,FirebaseListObservable} from 'angularfire2/database';
 @Injectable()
 export class RepositoryService {
 
@@ -22,7 +22,7 @@ export class RepositoryService {
     private db: AngularFireDatabase
   ) {
   }
-  get animations(): Observable<any[]> {
+  get animations(): FirebaseListObservable<any[]> {
     firebase.database().ref('/tags')
       .once('value', (data) => {
       console.log(data.val());
