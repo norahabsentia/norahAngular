@@ -4,6 +4,7 @@ import { LibraryService } from './library.service';
 import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 declare const $: any;
