@@ -22,7 +22,7 @@ export class RepositoryService {
     private db: AngularFireDatabase
   ) {
   }
-  get animations(): Observable<Animation[]> {
+  get animations(): Observable<any[]> {
     firebase.database().ref('/tags')
       .once('value', (data) => {
       console.log(data.val());
