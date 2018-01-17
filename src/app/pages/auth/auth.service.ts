@@ -23,10 +23,11 @@ export class AuthService {
     // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(value => {
       this.currentUser = firebase.auth().currentUser;
     // });
-    this.currentState = afAuth.map((state) => {
+   /* this.currentState = afAuth.map((state) => {
       this.currentUser = state !== null ? state.auth : null;
       return state;
     });
+    */
   }
 
   login(auth: {email: string, password: string}): void {
