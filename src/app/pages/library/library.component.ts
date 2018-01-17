@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { LibraryService } from './library.service';
 import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
-
+import 'rxjs/add/operator/map';
 
 declare const $: any;
 declare const jQuery: any;
