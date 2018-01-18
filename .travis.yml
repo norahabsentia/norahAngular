@@ -13,7 +13,7 @@ before_script:
   - npm install -g @angular/cli@1.6.4
 
 script:
-  - ng build --base-href "https://norahanimation.firebaseapp.com/"
+  - ng build --prod --aot=false --base-href "https://norahanimation.firebaseapp.com/"
 
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
