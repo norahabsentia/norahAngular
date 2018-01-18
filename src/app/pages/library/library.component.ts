@@ -1,10 +1,12 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { LibraryService } from './library.service';
 import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
-import {Observable} from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2';
 
 
