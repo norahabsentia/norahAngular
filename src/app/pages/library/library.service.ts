@@ -18,7 +18,7 @@ export class LibraryService {
     private db: AngularFireDatabase,
     private authService: AuthService
   ) {}
-  getAnimations(): FirebaseListObservable<any[]> {
+  getAnimations(): Observable<any[]> {
     return this.db.list(`/usernames/${this.authService.currentUser.uid}/mylibrary`);
   }
   removeAnimationEvent($event: MouseEvent) {
