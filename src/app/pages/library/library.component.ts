@@ -3,9 +3,10 @@ import { Http } from '@angular/http';
 import { LibraryService } from './library.service';
 import { ConfigurePiwikTracker, UsePiwikTracker } from 'angular2piwik';
 import { AuthService } from '../auth/auth.service';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2';
+
 
 declare const $: any;
 declare const jQuery: any;
