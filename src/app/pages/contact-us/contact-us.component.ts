@@ -47,6 +47,7 @@ export class ContactUsComponent {
     $.post("https://absentiamailserver.herokuapp.com/mail", body, function(data) {
       if (data === 'ok') {
         alert("Thank You for contacting us!. We will get back to you soon."); 
+        window.location.reload();
         // this.contactSuccessModal.show(); 
       }
   });
