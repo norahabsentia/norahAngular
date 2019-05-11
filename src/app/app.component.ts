@@ -31,9 +31,9 @@ export class AppComponent implements AfterViewInit {
               private repService: RepositoryService, private libService: LibraryService, private seoService: SeoService) {
                  // set your url to whatever should be communicating with Piwik with the correct backslashes
                 
-                if (window.location.href.indexOf("norah.ai") > -1) {
+                if (window.location.href.indexOf("norahai.com") > -1) {
                   console.log("You are at Norah.ai");
-                  const url = `//piwik.norah.ai/`;
+                  const url = `//piwik.norahai.com/`;
                   initializePiwik.init(url,1);
               } else {
                 console.log("You are NOT at Norah.ai");
